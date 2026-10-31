@@ -44,14 +44,14 @@ export const Modal: React.FC<ModalProps> = ({
         onClick={e => e.stopPropagation()}
       >
         {(title || showCloseButton) && (
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 dark:border-gray-700 flex-shrink-0">
+          <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-100 dark:border-gray-700 flex-shrink-0">
             {title && (
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h2>
+              <h2 className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white truncate pr-2">{title}</h2>
             )}
             {showCloseButton && (
               <button
                 onClick={onClose}
-                className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ml-auto"
+                className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ml-auto flex-shrink-0"
               >
                 <X className="w-5 h-5" />
               </button>

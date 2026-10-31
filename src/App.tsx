@@ -8,7 +8,7 @@ import { ToastContainer } from './components/ui/Toast';
 import { SplashScreen } from './components/ui/SplashScreen';
 
 const AppContent = () => {
-  const { currentView } = useApp();
+  const { currentView, scannedRoom } = useApp();
   const [showSplash, setShowSplash] = useState(false);
 
   if (showSplash) {
@@ -17,8 +17,10 @@ const AppContent = () => {
 
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-gray-50 dark:bg-gray-900">
-      {/* Global topbar — h-14 = 56px */}
-      <Topbar />
+      {/* Global topbar: hidden on mobile when scanned via QR so guest gets a full native phone app */}
+      <div className={scannedRoom ? 'hidden md:block flex-shrink-0' : 'flex-shrink-0'}>
+        <Topbar />
+      </div>
 
       {/* Content area fills remaining height */}
       <div className="flex-1 min-h-0 overflow-hidden">

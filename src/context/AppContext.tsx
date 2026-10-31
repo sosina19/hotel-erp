@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect, ReactNode } from 'react';
 import type { PropertyMode } from '../data/mockData';
 
 export type AppView = 'public' | 'admin' | 'frontdesk';
@@ -15,7 +15,8 @@ export type AdminPage =
   | 'finance'
   | 'inventory'
   | 'staff'
-  | 'settings';
+  | 'settings'
+  | 'smart-qr';
 
 export interface Toast {
   id: string;
@@ -55,20 +56,45 @@ interface AppContextType {
   setGuestLoggedIn: (loggedIn: boolean) => void;
   guestEmail: string;
   setGuestEmail: (email: string) => void;
+
+  // QR Code Deep-Linking
+  scannedRoom: string | null;
+  setScannedRoom: (room: string | null) => void;
+  scannedTarget: string | null;
+  setScannedTarget: (target: string | null) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
+// Helper to read URL params synchronously on first load
+const getInitialUrlParams = () => {
+  if (typeof window === 'undefined') return { room: null, target: null };
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const room = params.get('room');
+    const target = params.get('target');
+    return { room, target: target || (room ? 'dining' : null) };
+  } catch {
+    return { room: null, target: null };
+  }
+};
+
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [currentView, setCurrentViewState] = useState<AppView>('frontdesk');
+  const initialParams = getInitialUrlParams();
+
+  const [currentView, setCurrentViewState] = useState<AppView>(initialParams.room ? 'public' : 'frontdesk');
   const [viewHistory, setViewHistory] = useState<AppView[]>([]);
   const [adminPage, setAdminPage] = useState<AdminPage>('dashboard');
   const [propertyMode, setPropertyMode] = useState<PropertyMode>('hotel');
   const [darkMode, setDarkMode] = useState(false);
   const [toasts, setToasts] = useState<Toast[]>([]);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [guestLoggedIn, setGuestLoggedIn] = useState(false);
-  const [guestEmail, setGuestEmail] = useState('');
+  const [guestLoggedIn, setGuestLoggedIn] = useState(Boolean(initialParams.room));
+  const [guestEmail, setGuestEmail] = useState(initialParams.room ? `guest.room${initialParams.room}@betorahms.com` : '');
+
+  // Scanned room & target parameters
+  const [scannedRoom, setScannedRoom] = useState<string | null>(initialParams.room);
+  const [scannedTarget, setScannedTarget] = useState<string | null>(initialParams.target);
 
   const setCurrentView = useCallback((view: AppView) => {
     setCurrentViewState(prev => {
@@ -105,12 +131,33 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     setToasts(prev => [...prev, { ...toast, id }]);
     setTimeout(() => {
       setToasts(prev => prev.filter(t => t.id !== id));
-    }, 4000);
+    }, 4500);
   }, []);
 
   const removeToast = useCallback((id: string) => {
     setToasts(prev => prev.filter(t => t.id !== id));
   }, []);
+
+  // Deep-linking QR scan detection from URL params (e.g. ?room=101&target=dining)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const room = params.get('room');
+      const target = params.get('target');
+      if (room) {
+        setScannedRoom(room);
+        setScannedTarget(target || 'dining');
+        setCurrentViewState('public');
+        setGuestLoggedIn(true);
+        setGuestEmail(`guest.room${room}@betorahms.com`);
+        addToast({
+          type: 'success',
+          title: `Room #${room} QR Scan Connected`,
+          message: `Direct ${target === 'dining' ? 'In-Room Dining' : target === 'services' ? 'Hotel Services' : 'Guest Portal'} session activated for Room #${room}.`,
+        });
+      }
+    }
+  }, [addToast]);
 
   return (
     <AppContext.Provider value={{
@@ -123,6 +170,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       sidebarCollapsed, setSidebarCollapsed,
       guestLoggedIn, setGuestLoggedIn,
       guestEmail, setGuestEmail,
+      scannedRoom, setScannedRoom,
+      scannedTarget, setScannedTarget,
     }}>
       {children}
     </AppContext.Provider>

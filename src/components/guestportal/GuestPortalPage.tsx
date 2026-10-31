@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   LayoutDashboard, BedDouble, Calendar, Clock, DollarSign, Utensils,
   Sparkles, Wrench, Coffee, LogOut, Globe, Bell, ChevronRight,
   ChevronLeft, ShieldCheck, Award, ArrowLeft, ArrowUpRight, CheckCircle2,
-  Receipt, MessageSquare, Star, UserCog, KeyRound, Lock, PhoneCall
+  Receipt, MessageSquare, Star, UserCog, KeyRound, Lock, PhoneCall,
+  Menu, X
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { propertyConfigs } from '../../data/mockData';
@@ -30,11 +31,21 @@ interface GuestPortalPageProps {
 }
 
 export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublicSite }) => {
-  const { setGuestLoggedIn, setGuestEmail, addToast, propertyMode } = useApp();
+  const { setGuestLoggedIn, setGuestEmail, addToast, propertyMode, scannedRoom, scannedTarget, setCurrentView } = useApp();
   const config = propertyConfigs[propertyMode];
 
-  const [activeTab, setActiveTab] = useState<GuestPortalTab>('overview');
+  const [activeTab, setActiveTab] = useState<GuestPortalTab>(
+    (scannedTarget as GuestPortalTab) || 'dining'
+  );
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
+
+  // Synchronize active tab if scanned target changes
+  useEffect(() => {
+    if (scannedTarget) {
+      setActiveTab(scannedTarget as GuestPortalTab);
+    }
+  }, [scannedTarget]);
 
   // Digital Mobile RFID Key state
   const [keyUnlocked, setKeyUnlocked] = useState(false);
@@ -45,7 +56,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
     name: 'Lord James Worthington',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
     guestId: 'G001',
-    room: '101',
+    room: scannedRoom || '101',
     roomType: 'Deluxe King Suite',
     floor: 1,
     checkIn: '2026-10-29',
@@ -215,12 +226,159 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
     : 'restaurant-gradient';
 
   return (
-    <div className="flex h-full overflow-hidden bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div className="flex h-full overflow-hidden bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 relative">
       {/* ──────────────────────────────────────────────────────────── */}
-      {/* ADMIN-STYLE SLEEK COLLAPSIBLE RESIDENT SIDEBAR */}
+      {/* MOBILE SLIDE-OVER DRAWER (FULL NAVIGATION FOR SMARTPHONES)   */}
+      {/* ──────────────────────────────────────────────────────────── */}
+      {mobileDrawerOpen && (
+        <div className="fixed inset-0 z-50 md:hidden flex">
+          {/* Backdrop overlay */}
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity"
+            onClick={() => setMobileDrawerOpen(false)}
+          />
+
+          {/* Drawer Content */}
+          <div className={`relative w-4/5 max-w-xs ${gradientClass} text-white flex flex-col h-full shadow-2xl p-4 z-50 animate-slide-right`}>
+            {/* Drawer Header */}
+            <div className="flex items-center justify-between pb-3 border-b border-white/10">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 bg-white/20 rounded-xl flex items-center justify-center font-bold text-white shadow-xs">
+                  {config.logo}
+                </div>
+                <div>
+                  <p className="font-bold text-sm font-serif leading-tight">{config.name}</p>
+                  <span className="text-[10px] text-amber-300 font-bold uppercase tracking-wider">
+                    Guest Services
+                  </span>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setMobileDrawerOpen(false)}
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Resident Card */}
+            <div className="p-3 my-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15">
+              <div className="flex items-center gap-3">
+                <img
+                  src={stay.avatar}
+                  alt={stay.name}
+                  className="w-10 h-10 rounded-full object-cover border border-amber-400/80"
+                />
+                <div className="min-w-0 flex-1">
+                  <p className="text-xs font-bold truncate leading-tight">{stay.name}</p>
+                  <div className="flex items-center gap-1.5 mt-0.5">
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 font-bold">
+                      Room #{stay.room}
+                    </span>
+                    <span className="text-[10px] text-white/70">{stay.tier}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Instant Mobile Key RFID Trigger */}
+              <button
+                type="button"
+                onClick={handleUnlockMobileKey}
+                disabled={isUnlockingKey}
+                className={`w-full mt-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                  keyUnlocked
+                    ? 'bg-emerald-500 text-white'
+                    : 'bg-amber-500 hover:bg-amber-600 text-white shadow-xs'
+                }`}
+              >
+                {isUnlockingKey ? (
+                  <span>Transmitting Key Signal...</span>
+                ) : keyUnlocked ? (
+                  <>
+                    <CheckCircle2 className="w-4 h-4" />
+                    <span>Door Unlatched!</span>
+                  </>
+                ) : (
+                  <>
+                    <KeyRound className="w-4 h-4" />
+                    <span>Tap to Unlock Room #{stay.room}</span>
+                  </>
+                )}
+              </button>
+            </div>
+
+            {/* Navigation Modules */}
+            <nav className="flex-1 overflow-y-auto scrollbar-thin space-y-3 py-1">
+              {navSections.map(section => (
+                <div key={section.title}>
+                  <p className="px-2 text-[10px] font-bold text-white/40 uppercase tracking-wider mb-1">
+                    {section.title}
+                  </p>
+                  <div className="space-y-0.5">
+                    {section.items.map(item => {
+                      const isActive = activeTab === item.id;
+                      return (
+                        <button
+                          key={item.id}
+                          type="button"
+                          onClick={() => {
+                            setActiveTab(item.id);
+                            setMobileDrawerOpen(false);
+                          }}
+                          className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
+                            isActive
+                              ? 'bg-white/20 text-white font-bold border border-white/20 shadow-xs'
+                              : 'text-white/80 hover:text-white hover:bg-white/10'
+                          }`}
+                        >
+                          <span className="flex-shrink-0">{item.icon}</span>
+                          <span className="flex-1 text-left truncate">{item.label}</span>
+                          {item.badge && (
+                            <span className="px-1.5 py-0.2 rounded-full text-[9px] font-bold bg-white/20 text-white">
+                              {item.badge}
+                            </span>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </nav>
+
+            {/* Bottom Drawer Actions */}
+            <div className="pt-3 border-t border-white/10 space-y-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileDrawerOpen(false);
+                  setCurrentView('admin');
+                }}
+                className="w-full py-2 bg-white/10 hover:bg-white/20 rounded-xl text-xs font-semibold text-white/90 flex items-center justify-center gap-2 transition-colors border border-white/10"
+              >
+                <ShieldCheck className="w-3.5 h-3.5 text-amber-300" />
+                <span>Staff PMS Admin View</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleSignOut}
+                className="w-full py-2 bg-red-500/20 hover:bg-red-500/30 text-red-200 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition-colors"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+                <span>Sign Out</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ──────────────────────────────────────────────────────────── */}
+      {/* DESKTOP COLLAPSIBLE SIDEBAR (HIDDEN ON MOBILE SMARTPHONES)  */}
       {/* ──────────────────────────────────────────────────────────── */}
       <aside
-        className={`${gradientClass} flex flex-col transition-all duration-300 h-full relative z-30 shadow-luxury flex-shrink-0 ${
+        className={`${gradientClass} hidden md:flex flex-col transition-all duration-300 h-full relative z-30 shadow-luxury flex-shrink-0 ${
           sidebarCollapsed ? 'w-16' : 'w-60'
         }`}
       >
@@ -380,11 +538,51 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
       </aside>
 
       {/* ──────────────────────────────────────────────────────────── */}
-      {/* MAIN RIGHT CONTAINER: TOPBAR & SCROLLABLE CONTENT */}
+      {/* MAIN CONTAINER: MOBILE TOPBAR, DESKTOP TOPBAR & CONTENT     */}
       {/* ──────────────────────────────────────────────────────────── */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        {/* Top Authenticated Header Bar */}
-        <header className="flex-shrink-0 z-20 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 sm:px-6 h-14 flex items-center justify-between gap-4 shadow-xs">
+        {/* MOBILE TOPBAR (Shown only on screens < md) */}
+        <header className="md:hidden flex items-center justify-between px-3 h-14 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-xs flex-shrink-0 z-20">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <button
+              type="button"
+              onClick={() => setMobileDrawerOpen(true)}
+              className="w-9 h-9 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 flex items-center justify-center transition-colors flex-shrink-0"
+              title="Open Navigation Menu"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+            <div className="min-w-0">
+              <p className="text-xs font-bold text-gray-900 dark:text-white font-serif truncate leading-tight">
+                {config.name}
+              </p>
+              <span className="text-[10px] text-amber-600 dark:text-amber-400 font-bold block truncate">
+                {currentTabLabel}
+              </span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-1.5 flex-shrink-0">
+            {/* Room Indicator Badge */}
+            <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 flex items-center gap-1 border border-amber-200 dark:border-amber-700">
+              <BedDouble className="w-3 h-3 text-amber-600 dark:text-amber-400" />
+              <span>Room #{stay.room}</span>
+            </span>
+
+            {/* Folio Balance Shortcut */}
+            <button
+              type="button"
+              onClick={() => setActiveTab('billing')}
+              className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 border border-gray-200 dark:border-gray-600"
+              title="View room folio balance"
+            >
+              ${stay.balance.toFixed(0)}
+            </button>
+          </div>
+        </header>
+
+        {/* DESKTOP AUTHENTICATED HEADER BAR (Shown only on screens >= md) */}
+        <header className="hidden md:flex flex-shrink-0 z-20 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 sm:px-6 h-14 items-center justify-between gap-4 shadow-xs">
           {/* Section Breadcrumbs */}
           <div className="flex items-center gap-2 min-w-0">
             <span className="text-xs text-gray-400 hidden sm:inline">Resident Portal</span>
@@ -445,8 +643,8 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
           </div>
         </header>
 
-        {/* Scrollable Work Area */}
-        <main className="flex-1 overflow-y-auto scrollbar-thin p-4 sm:p-6 lg:p-7">
+        {/* Scrollable Work Area (pb-24 on mobile so bottom nav doesn't cover content) */}
+        <main className="flex-1 overflow-y-auto scrollbar-thin p-3 sm:p-6 lg:p-7 pb-24 md:pb-6">
           <div className="max-w-7xl mx-auto">
             {/* TAB 1: OVERVIEW DASHBOARD */}
             {activeTab === 'overview' && (
@@ -553,6 +751,84 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
             )}
           </div>
         </main>
+
+        {/* ──────────────────────────────────────────────────────────── */}
+        {/* MOBILE STICKY BOTTOM NAVIGATION BAR (SMARTPHONE APP STYLE)   */}
+        {/* ──────────────────────────────────────────────────────────── */}
+        <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-t border-gray-200 dark:border-gray-800 px-3 py-1.5 flex items-center justify-around shadow-xl">
+          {/* 1. Dining (Food Menu & In-Room Dining) */}
+          <button
+            type="button"
+            onClick={() => setActiveTab('dining')}
+            className={`flex flex-col items-center py-1 px-2.5 rounded-xl text-[10px] font-bold transition-all ${
+              activeTab === 'dining'
+                ? 'text-amber-600 dark:text-amber-400 scale-105'
+                : 'text-gray-500 dark:text-gray-400 hover:text-gray-700'
+            }`}
+          >
+            <Utensils className="w-5 h-5 mb-0.5" />
+            <span>Dining</span>
+          </button>
+
+          {/* 2. Hotel Services */}
+          <button
+            type="button"
+            onClick={() => setActiveTab('services')}
+            className={`flex flex-col items-center py-1 px-2.5 rounded-xl text-[10px] font-bold transition-all ${
+              activeTab === 'services'
+                ? 'text-amber-600 dark:text-amber-400 scale-105'
+                : 'text-gray-500 dark:text-gray-400 hover:text-gray-700'
+            }`}
+          >
+            <Coffee className="w-5 h-5 mb-0.5" />
+            <span>Services</span>
+          </button>
+
+          {/* 3. Center Elevated Digital RFID Key Unlock Button */}
+          <button
+            type="button"
+            onClick={handleUnlockMobileKey}
+            disabled={isUnlockingKey}
+            className={`flex flex-col items-center justify-center -mt-5 w-12 h-12 rounded-full shadow-lg text-white font-bold transition-all active:scale-95 ${
+              keyUnlocked
+                ? 'bg-emerald-500 ring-4 ring-emerald-200 dark:ring-emerald-900 animate-bounce'
+                : isUnlockingKey
+                ? 'bg-amber-400 animate-pulse'
+                : 'bg-amber-500 hover:bg-amber-600 ring-4 ring-amber-100 dark:ring-amber-900/40'
+            }`}
+            title="Tap to unlock room door"
+          >
+            {keyUnlocked ? (
+              <CheckCircle2 className="w-5 h-5" />
+            ) : (
+              <KeyRound className="w-5 h-5" />
+            )}
+          </button>
+
+          {/* 4. My Bill & Folio */}
+          <button
+            type="button"
+            onClick={() => setActiveTab('billing')}
+            className={`flex flex-col items-center py-1 px-2.5 rounded-xl text-[10px] font-bold transition-all ${
+              activeTab === 'billing'
+                ? 'text-amber-600 dark:text-amber-400 scale-105'
+                : 'text-gray-500 dark:text-gray-400 hover:text-gray-700'
+            }`}
+          >
+            <Receipt className="w-5 h-5 mb-0.5" />
+            <span>My Bill</span>
+          </button>
+
+          {/* 5. More / Full Navigation Drawer */}
+          <button
+            type="button"
+            onClick={() => setMobileDrawerOpen(true)}
+            className="flex flex-col items-center py-1 px-2.5 rounded-xl text-[10px] font-bold text-gray-500 dark:text-gray-400 hover:text-gray-700 transition-colors"
+          >
+            <LayoutDashboard className="w-5 h-5 mb-0.5" />
+            <span>More</span>
+          </button>
+        </div>
       </div>
     </div>
   );

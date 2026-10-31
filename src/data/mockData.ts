@@ -7,11 +7,11 @@ export type PropertyMode = 'hotel' | 'guesthouse' | 'restaurant';
 // ─── PROPERTY CONFIGURATIONS ────────────────────────────────
 export const propertyConfigs = {
   hotel: {
-    name: 'Grand Luxe Palace',
-    tagline: 'Where Luxury Meets Perfection',
-    address: '1 Grand Boulevard, Monaco',
-    phone: '+1 (800) 555-LUXE',
-    email: 'reservations@grandluxepalace.com',
+    name: 'Betora Grand Palace Hotel',
+    tagline: 'Betora HMS · Modern Hospitality Management Platform',
+    address: '1 Betora Boulevard, Luxury District',
+    phone: '+1 (800) 555-BETORA',
+    email: 'reservations@betorahms.com',
     theme: 'navy',
     accentColor: '#c9a84c',
     primaryColor: '#1e3a5f',

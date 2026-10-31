@@ -10,13 +10,22 @@ import { GuesthousePage } from '../public/GuesthousePage';
 import { useApp } from '../../context/AppContext';
 
 export const PublicLayout: React.FC = () => {
-  const { propertyMode, guestLoggedIn } = useApp();
-  const [currentPage, setCurrentPage] = useState('home');
+  const { propertyMode, guestLoggedIn, scannedRoom } = useApp();
+  const [currentPage, setCurrentPage] = useState(scannedRoom ? 'guest-portal' : 'home');
 
-  // Reset to home when property mode switches
+  // If scanned from QR code, direct straight to guest portal
   useEffect(() => {
-    setCurrentPage('home');
-  }, [propertyMode]);
+    if (scannedRoom) {
+      setCurrentPage('guest-portal');
+    }
+  }, [scannedRoom]);
+
+  // Reset to home when property mode switches (unless scanned via QR)
+  useEffect(() => {
+    if (!scannedRoom) {
+      setCurrentPage('home');
+    }
+  }, [propertyMode, scannedRoom]);
 
   // When authenticated and on the guest portal, bypass PublicNav completely
   // for a dedicated, uninterrupted Resident Portal user experience

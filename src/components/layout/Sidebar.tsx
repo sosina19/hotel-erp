@@ -2,7 +2,7 @@ import React from 'react';
 import {
   LayoutDashboard, CalendarDays, Users, DoorOpen, BedDouble,
   Sparkles, UtensilsCrossed, CreditCard, Package, UserCog,
-  Settings, ChevronLeft, ChevronRight, TrendingUp, Wrench, Moon
+  Settings, ChevronLeft, ChevronRight, TrendingUp, Wrench, Moon, QrCode
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import type { AdminPage } from '../../context/AppContext';
@@ -28,6 +28,7 @@ const navItems: NavItem[] = [
   { id: 'finance', label: 'Finance & Folios', icon: <CreditCard className="w-4 h-4" /> },
   { id: 'inventory', label: 'Inventory & Stock', icon: <Package className="w-4 h-4" /> },
   { id: 'staff', label: 'Staff & RBAC', icon: <UserCog className="w-4 h-4" /> },
+  { id: 'smart-qr', label: 'QR Room Codes', icon: <QrCode className="w-4 h-4" />, badge: 'Live' },
   { id: 'settings', label: 'Settings', icon: <Settings className="w-4 h-4" /> },
 ];
 

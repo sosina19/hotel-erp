@@ -822,7 +822,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
         size="lg"
       >
         {customizingItem && (
-          <div className="p-6 space-y-6 max-h-[82vh] overflow-y-auto scrollbar-thin">
+          <div className="p-4 sm:p-6 space-y-5 max-h-[82vh] overflow-y-auto scrollbar-thin">
             {/* Dish Header Info */}
             <div className="flex gap-4 items-start border-b border-gray-100 dark:border-gray-700 pb-4">
               <img
@@ -1130,7 +1130,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
         title={`In-Room Dining Tray (${cartCount} items configured)`}
         size="md"
       >
-        <form onSubmit={handleConfirmOrder} className="p-6 space-y-5 max-h-[82vh] overflow-y-auto scrollbar-thin">
+        <form onSubmit={handleConfirmOrder} className="p-4 sm:p-6 space-y-5 max-h-[82vh] overflow-y-auto scrollbar-thin">
           {cart.length === 0 ? (
             <div className="p-8 text-center space-y-3">
               <div className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto text-gray-400">

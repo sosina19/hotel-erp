@@ -13,6 +13,7 @@ import { Finance } from '../admin/Finance';
 import { Inventory } from '../admin/Inventory';
 import { Staff } from '../admin/Staff';
 import { Settings } from '../admin/Settings';
+import { QRCodeHub } from '../admin/QRCodeHub';
 import { useApp } from '../../context/AppContext';
 
 export const AdminLayout: React.FC = () => {
@@ -33,6 +34,7 @@ export const AdminLayout: React.FC = () => {
       case 'inventory': return <Inventory />;
       case 'staff': return <Staff />;
       case 'settings': return <Settings />;
+      case 'smart-qr': return <QRCodeHub />;
       default: return <Dashboard />;
     }
   };

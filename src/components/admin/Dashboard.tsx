@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   TrendingUp, TrendingDown, Users, DoorOpen, DoorClosed,
-  BedDouble, Activity, ArrowUpRight
+  BedDouble, Activity, ArrowUpRight, Download, Printer
 } from 'lucide-react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
@@ -9,6 +9,7 @@ import {
 } from 'recharts';
 import { revenueData, roomStatusData, kpiData, activityFeed } from '../../data/mockData';
 import { useApp } from '../../context/AppContext';
+import { downloadRawCSV, getReportDateStamp } from '../../utils/exportUtils';
 
 const activityIcons: Record<string, string> = {
   checkin: '🛎️',
@@ -82,6 +83,36 @@ const PieTooltip = ({ active, payload }: any) => {
 export const Dashboard: React.FC = () => {
   const { addToast, setAdminPage } = useApp();
 
+  const handleExportReport = () => {
+    const dateStamp = getReportDateStamp();
+    const csvContent = 
+      "BETORA HMS - OPERATIONS EXECUTIVE REPORT\r\n" +
+      `Report Generated,${dateStamp}\r\n` +
+      `Property,Betora Grand Palace Hotel\r\n` +
+      `System,Betora PMS Operations Engine\r\n\r\n` +
+      "OPERATIONS KEY METRICS,TODAY,CHANGE / STATUS\r\n" +
+      `Total Revenue Today,$13650,+8.2% vs yesterday\r\n` +
+      `Occupancy Rate,${kpiData.occupancyRate}%,+5.1% vs yesterday\r\n` +
+      `Arrivals Scheduled,${kpiData.arrivalsToday},12 completed\r\n` +
+      `Departures Scheduled,${kpiData.departuresTeday},18 completed\r\n` +
+      `Average Daily Rate (ADR),$524,Per room / night\r\n` +
+      `RevPAR,$356,Revenue per available room\r\n\r\n` +
+      "ROOM INVENTORY BREAKDOWN,ROOMS COUNT,PERCENTAGE\r\n" +
+      roomStatusData.map(r => `${r.name},${r.value},${((r.value / 40) * 100).toFixed(1)}%`).join("\r\n") + "\r\n\r\n" +
+      "7-DAY REVENUE PERFORMANCE,ROOMS REVENUE,RESTAURANT REVENUE,SPA REVENUE,DAILY TOTAL\r\n" +
+      revenueData.map(d => `${d.date},$${d.rooms},$${d.restaurant},$${d.spa},$${d.total}`).join("\r\n") + "\r\n\r\n" +
+      "LATEST OPERATIONAL AUDIT LOG,TIME,CATEGORY,STAFF / AGENT,DETAILS\r\n" +
+      activityFeed.map(a => `${a.time},${a.type},"${a.user}","${a.message.replace(/"/g, '""')}"`).join("\r\n");
+
+    downloadRawCSV(`Betora_Operations_Report_${dateStamp}.csv`, csvContent);
+
+    addToast({
+      type: 'success',
+      title: 'Operations Report Exported',
+      message: `Downloaded Betora_Operations_Report_${dateStamp}.csv with full KPI, revenue & room statistics.`,
+    });
+  };
+
   return (
     <div className="p-6 space-y-6 min-h-full">
       {/* Header */}
@@ -90,13 +121,26 @@ export const Dashboard: React.FC = () => {
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white font-serif">Operations Dashboard</h1>
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Friday, October 30, 2026 · Live Overview</p>
         </div>
-        <button
-          onClick={() => addToast({ type: 'success', title: 'Report Generated', message: 'Daily report exported to PDF.' })}
-          className="flex items-center gap-2 px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity shadow-sm"
-        >
-          <ArrowUpRight className="w-4 h-4" />
-          Export Report
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => window.print()}
+            className="flex items-center gap-1.5 px-3 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-xs font-semibold transition-colors border border-gray-200 dark:border-gray-700"
+            title="Print Executive Daily Summary"
+          >
+            <Printer className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Print Summary</span>
+          </button>
+          <button
+            type="button"
+            onClick={handleExportReport}
+            className="flex items-center gap-2 px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg text-xs sm:text-sm font-semibold hover:opacity-90 transition-opacity shadow-sm"
+            title="Download complete Operations CSV report"
+          >
+            <Download className="w-4 h-4 text-amber-500" />
+            <span>Export Report (CSV)</span>
+          </button>
+        </div>
       </div>
 
       {/* KPI Cards */}

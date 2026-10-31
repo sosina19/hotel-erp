@@ -8,6 +8,7 @@ import type { Reservation } from '../../data/mockData';
 import { StatusBadge } from '../ui/Badge';
 import { Modal } from '../ui/Modal';
 import { useApp } from '../../context/AppContext';
+import { downloadRawCSV, getReportDateStamp } from '../../utils/exportUtils';
 
 const FILTERS = ['All', 'Confirmed', 'Checked-In', 'Checked-Out', 'Cancelled', 'Pending'];
 const SOURCES = ['All Sources', 'Direct', 'Booking.com', 'Expedia', 'Walk-in', 'Phone'];
@@ -46,6 +47,27 @@ export const Reservations: React.FC = () => {
     'cancelled': '#ef4444', 'pending': '#f59e0b',
   };
 
+  const handleExportReservations = () => {
+    const dateStamp = getReportDateStamp();
+    const csvContent =
+      "BETORA HMS - MASTER RESERVATIONS LEDGER\r\n" +
+      `Export Date,${dateStamp}\r\n` +
+      `Property,Betora Grand Palace Hotel\r\n` +
+      `Total Bookings,${reservations.length}\r\n\r\n` +
+      "BOOKING REF,GUEST NAME,ROOM NUMBER,ROOM TYPE,CHECK-IN,CHECK-OUT,GUESTS,TOTAL AMOUNT,SOURCE,STATUS\r\n" +
+      reservations.map(r =>
+        `${r.bookingRef},"${r.guestName.replace(/"/g, '""')}",Room ${r.roomNumber},"${r.roomType}",${r.checkIn},${r.checkOut},${r.adults + r.children},$${r.totalAmount},${r.bookingSource},${r.status.toUpperCase()}`
+      ).join("\r\n");
+
+    downloadRawCSV(`Betora_Reservations_Ledger_${dateStamp}.csv`, csvContent);
+
+    addToast({
+      type: 'success',
+      title: 'Reservations Exported',
+      message: `Downloaded Betora_Reservations_Ledger_${dateStamp}.csv with all active and upcoming stays.`,
+    });
+  };
+
   return (
     <div className="p-6 space-y-5">
       {/* Header */}
@@ -55,6 +77,15 @@ export const Reservations: React.FC = () => {
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{reservations.length} total · {reservations.filter(r => r.status === 'checked-in').length} active stays</p>
         </div>
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={handleExportReservations}
+            className="flex items-center gap-1.5 px-3 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-xs font-semibold transition-colors border border-gray-200 dark:border-gray-700"
+            title="Download CSV Ledger"
+          >
+            <Download className="w-3.5 h-3.5 text-blue-500" />
+            <span>Export CSV</span>
+          </button>
           <button
             onClick={() => setShowGantt(!showGantt)}
             className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium border transition-colors ${showGantt ? 'bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-900/20 dark:border-blue-700 dark:text-blue-400' : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800'}`}

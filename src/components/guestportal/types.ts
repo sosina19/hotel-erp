@@ -99,11 +99,12 @@ export interface GuestDiningOrder {
   tax: number;
   deliveryFee: number;
   total: number;
-  deliveryType: 'Room Delivery' | 'Restaurant Pickup';
+  deliveryType: 'Room Delivery' | 'Restaurant Pickup' | 'Open Table Dine-in';
   roomNumber: string;
+  tableNumber?: string;
   deliveryTime: string;
   specialInstructions: string;
-  paymentMethod: 'Charge to Room Folio' | 'Credit Card';
+  paymentMethod: 'Charge to Room Folio' | 'Credit Card' | 'Pay at Table';
   status: 'Pending' | 'Accepted' | 'Preparing' | 'Ready' | 'Delivered' | 'Cancelled';
   assignedServer: string;
   estimatedMinutes: number;

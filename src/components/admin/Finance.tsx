@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { CreditCard, DollarSign, FileText, Check, Eye, TrendingUp, ArrowDownRight } from 'lucide-react';
+import { CreditCard, DollarSign, FileText, Check, Eye, TrendingUp, ArrowDownRight, Download, Printer } from 'lucide-react';
 import { folios } from '../../data/mockData';
 import type { Folio } from '../../data/mockData';
 import { StatusBadge } from '../ui/Badge';
 import { Modal } from '../ui/Modal';
 import { useApp } from '../../context/AppContext';
+import { downloadRawCSV, getReportDateStamp } from '../../utils/exportUtils';
 
 const categoryIcons: Record<string, string> = {
   Room: '🛏️', Restaurant: '🍽️', Spa: '💆', Bar: '🍾',
@@ -35,6 +36,38 @@ export const Finance: React.FC = () => {
     }, 1500);
   };
 
+  const handleExportFinanceReport = () => {
+    const dateStamp = getReportDateStamp();
+    const csvContent =
+      "BETORA HMS - FINANCIAL FOLIOS & BILLING LEDGER\r\n" +
+      `Export Date,${dateStamp}\r\n` +
+      `Property,Betora Grand Palace Hotel\r\n` +
+      `Active Folios Count,${folioList.length}\r\n\r\n` +
+      "FINANCIAL SUMMARY,AMOUNT (USD),STATUS\r\n" +
+      `Total Revenue Recorded,$${totalRevenue.toFixed(2)},Gross Folio Charges\r\n` +
+      `Settled Revenue,$${totalSettled.toFixed(2)},Processed & Paid in Full\r\n` +
+      `Outstanding Incidentals Balance,$${totalOpen.toFixed(2)},Pending Checkout Settlement\r\n` +
+      `Average Folio Value,$${(totalRevenue / folioList.length).toFixed(2)},Per Resident Stay\r\n\r\n` +
+      "FOLIO ID,GUEST NAME,ROOM NUMBER,TOTAL CHARGES,PAID AMOUNT,BALANCE DUE,STATUS,ITEMS COUNT\r\n" +
+      folioList.map(f => 
+        `${f.id},"${f.guestName.replace(/"/g, '""')}",Room ${f.roomNumber},$${f.total.toFixed(2)},$${f.paid.toFixed(2)},$${f.balance.toFixed(2)},${f.status.toUpperCase()},${f.items.length}`
+      ).join("\r\n") + "\r\n\r\n" +
+      "ITEMIZED CHARGES AUDIT TRAIL,GUEST NAME,FOLIO REF,CATEGORY,DESCRIPTION,AMOUNT,DATE\r\n" +
+      folioList.flatMap(f => 
+        f.items.map(c => 
+          `"${f.guestName.replace(/"/g, '""')}",${f.id},${c.category},"${c.description.replace(/"/g, '""')}",$${c.amount.toFixed(2)},${c.date}`
+        )
+      ).join("\r\n");
+
+    downloadRawCSV(`Betora_Finance_Folio_Ledger_${dateStamp}.csv`, csvContent);
+
+    addToast({
+      type: 'success',
+      title: 'Financial Report Exported',
+      message: `Downloaded Betora_Finance_Folio_Ledger_${dateStamp}.csv with complete guest folios & itemized charges.`,
+    });
+  };
+
   return (
     <div className="p-6 space-y-5">
       <div className="flex items-center justify-between">
@@ -42,9 +75,25 @@ export const Finance: React.FC = () => {
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white font-serif">Finance & Folios</h1>
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{folioList.length} active folios · GDPR compliant billing</p>
         </div>
-        <button onClick={() => addToast({ type: 'info', title: 'Coming Soon', message: 'Financial reports export in full version.' })} className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium">
-          Export Report
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => window.print()}
+            className="flex items-center gap-1.5 px-3 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-xs font-semibold transition-colors border border-gray-200 dark:border-gray-700"
+            title="Print Financial Statement"
+          >
+            <Printer className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Print</span>
+          </button>
+          <button
+            type="button"
+            onClick={handleExportFinanceReport}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs sm:text-sm font-semibold transition-colors shadow-sm"
+          >
+            <Download className="w-4 h-4" />
+            <span>Export Report (CSV)</span>
+          </button>
+        </div>
       </div>
 
       {/* Financial KPIs */}

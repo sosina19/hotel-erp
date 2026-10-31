@@ -1,4 +1,4 @@
-// ============================================================
+﻿// ============================================================
 // HOSPITALITY ERP - COMPREHENSIVE MOCK DATA
 // ============================================================
 
@@ -81,7 +81,7 @@ export const rooms: Room[] = [
     ratePerNight: 350, status: 'occupied', features: ['City View', 'Mini Bar', 'Smart TV', 'Rain Shower'],
     image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80',
     description: 'A spacious deluxe room with panoramic city views, featuring a plush king bed and marble bathroom.',
-    size: '42 m²', view: 'City View', currentGuest: 'James Worthington', checkOut: '2026-11-02',
+    size: '42 m²', view: 'City View', currentGuest: 'Dawit Bekele', checkOut: '2026-11-02',
   },
   {
     id: 'R102', number: '102', type: 'Deluxe Twin', floor: 1, capacity: 2, bedType: 'Twin',
@@ -95,7 +95,7 @@ export const rooms: Room[] = [
     ratePerNight: 650, status: 'occupied', features: ['Ocean View', 'Jacuzzi', 'Living Room', 'Butler Service', 'Mini Bar'],
     image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80',
     description: 'Our flagship executive suite with a separate living area, premium amenities, and dedicated butler service.',
-    size: '85 m²', view: 'Ocean View', currentGuest: 'Sophia Chen', checkOut: '2026-11-04',
+    size: '85 m²', view: 'Ocean View', currentGuest: 'Tigist Alemu', checkOut: '2026-11-04',
   },
   {
     id: 'R202', number: '202', type: 'Deluxe King', floor: 2, capacity: 2, bedType: 'King',
@@ -116,7 +116,7 @@ export const rooms: Room[] = [
     ratePerNight: 520, status: 'occupied', features: ['Sea View', 'Lounge Area', 'Premium Bar', 'Smart TV'],
     image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80',
     description: 'Sophisticated junior suite with an integrated lounge area and breathtaking sea views.',
-    size: '68 m²', view: 'Sea View', currentGuest: 'Marcus Adeyemi', checkOut: '2026-11-01',
+    size: '68 m²', view: 'Sea View', currentGuest: 'Yonas Girma', checkOut: '2026-11-01',
   },
   {
     id: 'R401', number: '401', type: 'Deluxe King', floor: 4, capacity: 2, bedType: 'King',
@@ -137,7 +137,7 @@ export const rooms: Room[] = [
     ratePerNight: 850, status: 'occupied', features: ['Garden View', '2 Bathrooms', 'Living Room', 'Kids Area'],
     image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&q=80',
     description: 'Designed for families, featuring multiple sleeping areas, two bathrooms, and a dedicated kids play corner.',
-    size: '130 m²', view: 'Garden View', currentGuest: 'The Morrison Family', checkOut: '2026-11-03',
+    size: '130 m²', view: 'Garden View', currentGuest: 'Ye-Habtamu Family', checkOut: '2026-11-03',
   },
   {
     id: 'R502', number: '502', type: 'Deluxe Twin', floor: 5, capacity: 2, bedType: 'Twin',
@@ -194,80 +194,80 @@ export interface Guest {
 
 export const guests: Guest[] = [
   {
-    id: 'G001', firstName: 'James', lastName: 'Worthington',
-    email: 'j.worthington@sterling.co.uk', phone: '+44 7700 900123',
-    nationality: 'British', passportNumber: 'GB12345678',
+    id: 'G001', firstName: 'Dawit', lastName: 'Bekele',
+    email: 'd.bekele@ethiotelecom.et', phone: '+44 7700 900123',
+    nationality: 'Ethiopian', passportNumber: 'ET12345678',
     dateOfBirth: '1978-03-15', tier: 'Platinum', totalStays: 28, totalSpend: 84500,
     preferences: ['High Floor', 'Extra Pillows', 'Late Checkout', 'Champagne on arrival'],
-    allergies: ['Shellfish'], notes: 'VIP client. CEO of Sterling Capital. Prefers absolute discretion.',
+    allergies: ['Shellfish'], notes: 'VIP client. CEO of Ethio Capital Group. Prefers absolute discretion.',
     lastStay: '2026-10-15', joinDate: '2019-06-01',
-    address: '14 Park Lane, Mayfair, London W1K 1QY',
+    address: 'Bole Sub-City, Woreda 3, Addis Ababa, Ethiopia',
     avatar: 'https://i.pravatar.cc/150?img=11',
   },
   {
-    id: 'G002', firstName: 'Sophia', lastName: 'Chen',
-    email: 'sophia.c@techventures.sg', phone: '+65 8888 1234',
-    nationality: 'Singaporean', passportNumber: 'SG98765432',
+    id: 'G002', firstName: 'Tigist', lastName: 'Alemu',
+    email: 'tigist.alemu@ethiotech.et', phone: '+65 8888 1234',
+    nationality: 'Ethiopian', passportNumber: 'ET98765432',
     dateOfBirth: '1985-11-22', tier: 'Gold', totalStays: 12, totalSpend: 31200,
     preferences: ['Ocean View', 'Vegan Menu', 'Yoga Mat', 'Early Check-in'],
     allergies: ['Peanuts', 'Dairy'], notes: 'Regular business traveler. Always requests the 201 suite.',
     lastStay: '2026-10-28', joinDate: '2021-03-14',
-    address: '88 Marina Boulevard, Singapore 018981',
+    address: 'Kirkos Sub-City, Woreda 5, Addis Ababa, Ethiopia',
     avatar: 'https://i.pravatar.cc/150?img=47',
   },
   {
-    id: 'G003', firstName: 'Marcus', lastName: 'Adeyemi',
-    email: 'm.adeyemi@gmail.com', phone: '+234 803 456 7890',
-    nationality: 'Nigerian', passportNumber: 'NG11223344',
+    id: 'G003', firstName: 'Yonas', lastName: 'Girma',
+    email: 'yonas.girma@gmail.com', phone: '+234 803 456 7890',
+    nationality: 'Ethiopian', passportNumber: 'ET11223344',
     dateOfBirth: '1990-07-08', tier: 'Silver', totalStays: 5, totalSpend: 9800,
     preferences: ['Ground Floor', 'Quiet Room', 'Extra Towels'],
     allergies: [], notes: 'Traveling for medical conference. Needs early breakfast.',
     lastStay: '2026-10-30', joinDate: '2023-01-20',
-    address: '45 Victoria Island, Lagos, Nigeria',
+    address: 'Arada Sub-City, Woreda 7, Addis Ababa, Ethiopia',
     avatar: 'https://i.pravatar.cc/150?img=12',
   },
   {
-    id: 'G004', firstName: 'Isabella', lastName: 'Romano',
-    email: 'isabella.romano@vogue.it', phone: '+39 02 1234 5678',
-    nationality: 'Italian', passportNumber: 'IT55667788',
+    id: 'G004', firstName: 'Mekdes', lastName: 'Haile',
+    email: 'mekdes.haile@addisstyle.et', phone: '+39 02 1234 5678',
+    nationality: 'Ethiopian', passportNumber: 'ET55667788',
     dateOfBirth: '1992-04-30', tier: 'Gold', totalStays: 9, totalSpend: 22400,
     preferences: ['Fashion Week', 'Full-Length Mirror', 'Express Laundry', 'Wine Selection'],
     allergies: ['Gluten'], notes: 'Fashion editor. Very particular about room aesthetics.',
     lastStay: '2026-10-18', joinDate: '2022-09-05',
-    address: 'Via della Spiga 12, Milan 20121, Italy',
+    address: 'Bole Sub-City, Woreda 6, Addis Ababa, Ethiopia',
     avatar: 'https://i.pravatar.cc/150?img=44',
   },
   {
-    id: 'G005', firstName: 'David', lastName: 'Morrison',
-    email: 'd.morrison@family.com', phone: '+1 (555) 234-5678',
-    nationality: 'American', passportNumber: 'US99887766',
+    id: 'G005', firstName: 'Habtamu', lastName: 'Tadesse',
+    email: 'habtamu.tadesse@family.et', phone: '+1 (555) 234-5678',
+    nationality: 'Ethiopian', passportNumber: 'ET99887766',
     dateOfBirth: '1975-12-01', tier: 'Silver', totalStays: 3, totalSpend: 8500,
     preferences: ['Family Suite', 'Kids Menu', 'Crib', 'Adjacent Rooms'],
     allergies: ['Nuts'], notes: 'Traveling with wife and 3 children (ages 4, 7, 10).',
     lastStay: '2026-10-30', joinDate: '2024-07-11',
-    address: '123 Maple Street, Greenwich, CT 06830',
+    address: 'Lideta Sub-City, Woreda 2, Addis Ababa, Ethiopia',
     avatar: 'https://i.pravatar.cc/150?img=13',
   },
   {
-    id: 'G006', firstName: 'Yuki', lastName: 'Tanaka',
-    email: 'yuki.tanaka@tokyocorp.jp', phone: '+81 3 1234 5678',
-    nationality: 'Japanese', passportNumber: 'JP44332211',
+    id: 'G006', firstName: 'Selam', lastName: 'Tesfaye',
+    email: 'selam.tesfaye@gmail.com', phone: '+81 3 1234 5678',
+    nationality: 'Ethiopian', passportNumber: 'ET44332211',
     dateOfBirth: '1988-08-14', tier: 'Bronze', totalStays: 2, totalSpend: 2800,
     preferences: ['Japanese Tea', 'Quiet Room', 'Western Breakfast'],
     allergies: ['Lactose'], notes: 'First-time visitor. Very polite. Gave 5-star feedback.',
     lastStay: '2026-09-22', joinDate: '2026-09-01',
-    address: '1-1 Marunouchi, Chiyoda, Tokyo 100-0005',
+    address: 'Yeka Sub-City, Woreda 10, Addis Ababa, Ethiopia',
     avatar: 'https://i.pravatar.cc/150?img=45',
   },
   {
-    id: 'G007', firstName: 'James', middleName: 'A.', lastName: 'Worthington',
-    email: 'j.worthington@sterling.co.uk', phone: '+44 7700 900123',
-    nationality: 'British', gender: 'Male', passportNumber: 'GB12345678',
-    nationalIdNumber: 'NID-UK-88291', idType: 'Passport', idNumber: 'GB12345678', idExpiryDate: '2029-08-15',
+    id: 'G007', firstName: 'Dawit', middleName: 'A.', lastName: 'Bekele',
+    email: 'd.bekele@ethiotelecom.et', phone: '+44 7700 900123',
+    nationality: 'Ethiopian', gender: 'Male', passportNumber: 'ET12345678',
+    nationalIdNumber: 'NID-ET-88291', idType: 'Passport', idNumber: 'GB12345678', idExpiryDate: '2029-08-15',
     loyaltyNumber: '', dateOfBirth: '1978-03-15', tier: 'Bronze',
     totalStays: 1, totalSpend: 1540, preferences: ['Extra Pillows'], allergies: [],
     notes: 'Secondary profile created through third-party Expedia booking.',
-    lastStay: '2026-10-29', joinDate: '2026-10-28', address: 'London, UK',
+    lastStay: '2026-10-29', joinDate: '2026-10-28', address: 'Addis Ababa, Ethiopia',
     avatar: 'https://i.pravatar.cc/150?img=11',
     isDuplicateOf: 'G001',
   },
@@ -298,7 +298,7 @@ export interface Reservation {
 
 export const reservations: Reservation[] = [
   {
-    id: 'RES001', guestId: 'G001', guestName: 'James Worthington',
+    id: 'RES001', guestId: 'G001', guestName: 'Dawit Bekele',
     roomId: 'R101', roomNumber: '101', roomType: 'Deluxe King',
     checkIn: '2026-10-29', checkOut: '2026-11-02', nights: 4, adults: 2, children: 0,
     ratePerNight: 350, totalAmount: 1540, status: 'checked-in',
@@ -307,7 +307,7 @@ export const reservations: Reservation[] = [
     paymentStatus: 'paid', createdAt: '2026-10-01',
   },
   {
-    id: 'RES002', guestId: 'G002', guestName: 'Sophia Chen',
+    id: 'RES002', guestId: 'G002', guestName: 'Tigist Alemu',
     roomId: 'R201', roomNumber: '201', roomType: 'Executive Suite',
     checkIn: '2026-10-28', checkOut: '2026-11-04', nights: 7, adults: 1, children: 0,
     ratePerNight: 650, totalAmount: 4745, status: 'checked-in',
@@ -316,7 +316,7 @@ export const reservations: Reservation[] = [
     paymentStatus: 'partial', createdAt: '2026-09-15',
   },
   {
-    id: 'RES003', guestId: 'G003', guestName: 'Marcus Adeyemi',
+    id: 'RES003', guestId: 'G003', guestName: 'Yonas Girma',
     roomId: 'R302', roomNumber: '302', roomType: 'Junior Suite',
     checkIn: '2026-10-30', checkOut: '2026-11-01', nights: 2, adults: 1, children: 0,
     ratePerNight: 520, totalAmount: 1092, status: 'checked-in',
@@ -325,7 +325,7 @@ export const reservations: Reservation[] = [
     paymentStatus: 'paid', createdAt: '2026-10-10',
   },
   {
-    id: 'RES004', guestId: 'G004', guestName: 'Isabella Romano',
+    id: 'RES004', guestId: 'G004', guestName: 'Mekdes Haile',
     roomId: 'R402', roomNumber: '402', roomType: 'Executive Suite',
     checkIn: '2026-11-01', checkOut: '2026-11-05', nights: 4, adults: 1, children: 0,
     ratePerNight: 700, totalAmount: 2940, status: 'confirmed',
@@ -334,7 +334,7 @@ export const reservations: Reservation[] = [
     paymentStatus: 'paid', createdAt: '2026-10-05',
   },
   {
-    id: 'RES005', guestId: 'G005', guestName: 'The Morrison Family',
+    id: 'RES005', guestId: 'G005', guestName: 'Ye-Habtamu Family',
     roomId: 'R501', roomNumber: '501', roomType: 'Family Suite',
     checkIn: '2026-10-29', checkOut: '2026-11-03', nights: 5, adults: 2, children: 3,
     ratePerNight: 850, totalAmount: 4462, status: 'checked-in',
@@ -343,7 +343,7 @@ export const reservations: Reservation[] = [
     paymentStatus: 'partial', createdAt: '2026-09-20',
   },
   {
-    id: 'RES006', guestId: 'G006', guestName: 'Yuki Tanaka',
+    id: 'RES006', guestId: 'G006', guestName: 'Selam Tesfaye',
     roomId: 'R102', roomNumber: '102', roomType: 'Deluxe Twin',
     checkIn: '2026-11-02', checkOut: '2026-11-05', nights: 3, adults: 2, children: 0,
     ratePerNight: 320, totalAmount: 1009, status: 'confirmed',
@@ -352,7 +352,7 @@ export const reservations: Reservation[] = [
     paymentStatus: 'pending', createdAt: '2026-10-25',
   },
   {
-    id: 'RES007', guestId: 'G001', guestName: 'Elena Vasquez',
+    id: 'RES007', guestId: 'G001', guestName: 'Hiwot Mengistu',
     roomId: 'R301', roomNumber: '301', roomType: 'Presidential Suite',
     checkIn: '2026-11-05', checkOut: '2026-11-10', nights: 5, adults: 2, children: 0,
     ratePerNight: 1200, totalAmount: 6300, status: 'confirmed',
@@ -364,14 +364,14 @@ export const reservations: Reservation[] = [
 
 // ─── TODAY'S ARRIVALS / DEPARTURES ───────────────────────────
 export const todayArrivals = [
-  { id: 'A001', guestName: 'Oliver Bennett', roomType: 'Deluxe King', checkIn: '2026-10-30', checkOut: '2026-11-03', adults: 2, nights: 4, bookingRef: 'LXP-2026-008', status: 'pending', phone: '+44 7911 123456' },
-  { id: 'A002', guestName: 'Priya Sharma', roomType: 'Executive Suite', checkIn: '2026-10-30', checkOut: '2026-11-07', adults: 1, nights: 8, bookingRef: 'LXP-2026-009', status: 'pending', phone: '+91 98765 43210' },
-  { id: 'A003', guestName: 'Lucas Mueller', roomType: 'Junior Suite', checkIn: '2026-10-30', checkOut: '2026-11-02', adults: 2, nights: 3, bookingRef: 'LXP-2026-010', status: 'checked-in', phone: '+49 30 123456' },
+  { id: 'A001', guestName: 'Biniam Kebede', roomType: 'Deluxe King', checkIn: '2026-10-30', checkOut: '2026-11-03', adults: 2, nights: 4, bookingRef: 'LXP-2026-008', status: 'pending', phone: '+44 7911 123456' },
+  { id: 'A002', guestName: 'Firehiwot Desta', roomType: 'Executive Suite', checkIn: '2026-10-30', checkOut: '2026-11-07', adults: 1, nights: 8, bookingRef: 'LXP-2026-009', status: 'pending', phone: '+91 98765 43210' },
+  { id: 'A003', guestName: 'Natnael Worku', roomType: 'Junior Suite', checkIn: '2026-10-30', checkOut: '2026-11-02', adults: 2, nights: 3, bookingRef: 'LXP-2026-010', status: 'checked-in', phone: '+49 30 123456' },
 ];
 
 export const todayDepartures = [
-  { id: 'D001', guestName: 'Anna Kowalski', roomNumber: '204', roomType: 'Deluxe Twin', checkOut: '2026-10-30', nights: 5, totalBill: 1750, status: 'pending', billSettled: false },
-  { id: 'D002', guestName: 'Chen Wei', roomNumber: '108', roomType: 'Deluxe King', checkOut: '2026-10-30', nights: 2, totalBill: 840, status: 'checked-out', billSettled: true },
+  { id: 'D001', guestName: 'Almaz Getachew', roomNumber: '204', roomType: 'Deluxe Twin', checkOut: '2026-10-30', nights: 5, totalBill: 1750, status: 'pending', billSettled: false },
+  { id: 'D002', guestName: 'Bethlehem Zewdu', roomNumber: '108', roomType: 'Deluxe King', checkOut: '2026-10-30', nights: 2, totalBill: 840, status: 'checked-out', billSettled: true },
 ];
 
 // ─── REVENUE DATA ─────────────────────────────────────────────
@@ -414,14 +414,14 @@ export interface Activity {
 }
 
 export const activityFeed: Activity[] = [
-  { id: 'ACT001', type: 'checkin', message: 'Room 302 checked in — Marcus Adeyemi', time: '2 min ago', user: 'Front Desk: Sarah' },
-  { id: 'ACT002', type: 'order', message: 'Table 4 ordered: 2x Beef Steak, 1x Lobster Bisque', time: '8 min ago', user: 'Server: Tom' },
-  { id: 'ACT003', type: 'housekeeping', message: 'Room 202 marked Dirty → In Progress', time: '15 min ago', user: 'HK: Maria' },
-  { id: 'ACT004', type: 'payment', message: 'Folio settled for Room 108 — $840.00', time: '22 min ago', user: 'Cashier: James' },
+  { id: 'ACT001', type: 'checkin', message: 'Room 302 checked in — Yonas Girma', time: '2 min ago', user: 'Front Desk: Selamawit' },
+  { id: 'ACT002', type: 'order', message: 'Table 4 ordered: 2x Beef Steak, 1x Lobster Bisque', time: '8 min ago', user: 'Server: Tesfaye' },
+  { id: 'ACT003', type: 'housekeeping', message: 'Room 202 marked Dirty → In Progress', time: '15 min ago', user: 'HK: Marta' },
+  { id: 'ACT004', type: 'payment', message: 'Folio settled for Room 108 — $840.00', time: '22 min ago', user: 'Cashier: Yared' },
   { id: 'ACT005', type: 'booking', message: 'New booking LXP-2026-007 — Presidential Suite', time: '35 min ago', user: 'System' },
-  { id: 'ACT006', type: 'maintenance', message: 'Room 401 flagged for maintenance — AC unit', time: '1 hr ago', user: 'Eng: Rob' },
-  { id: 'ACT007', type: 'order', message: 'Spa appointment booked — Sophia Chen, 3:00 PM', time: '1 hr ago', user: 'Spa: Lisa' },
-  { id: 'ACT008', type: 'checkout', message: 'Room 108 checked out — Chen Wei', time: '2 hrs ago', user: 'Front Desk: Sarah' },
+  { id: 'ACT006', type: 'maintenance', message: 'Room 401 flagged for maintenance — AC unit', time: '1 hr ago', user: 'Eng: Robel' },
+  { id: 'ACT007', type: 'order', message: 'Spa appointment booked — Tigist Alemu, 3:00 PM', time: '1 hr ago', user: 'Spa: Liya' },
+  { id: 'ACT008', type: 'checkout', message: 'Room 108 checked out — Bethlehem Zewdu', time: '2 hrs ago', user: 'Front Desk: Selamawit' },
 ];
 
 // ─── RESTAURANT / POS ─────────────────────────────────────────
@@ -490,34 +490,34 @@ export interface OrderItem {
 }
 
 export const restaurantTables: RestaurantTable[] = [
-  { id: 'T01', number: 1, seats: 2, status: 'available', server: 'Tom' },
-  { id: 'T02', number: 2, seats: 4, status: 'occupied', guestName: 'Emma Thompson', covers: 3, openedAt: '19:15', currentOrder: [
+  { id: 'T01', number: 1, seats: 2, status: 'available', server: 'Tesfaye' },
+  { id: 'T02', number: 2, seats: 4, status: 'occupied', guestName: 'Emebet Assefa', covers: 3, openedAt: '19:15', currentOrder: [
     { menuItemId: 'M006', menuItemName: 'Wagyu Beef Steak', quantity: 2, unitPrice: 89, total: 178 },
     { menuItemId: 'M003', menuItemName: 'Burrata Caprese', quantity: 1, unitPrice: 19, total: 19 },
     { menuItemId: 'M013', menuItemName: 'Artisan Coffee', quantity: 3, unitPrice: 8, total: 24 },
-  ], totalBill: 221, server: 'Sophie' },
-  { id: 'T03', number: 3, seats: 2, status: 'reserved', guestName: 'Reservation: 8:00PM', server: 'Tom' },
+  ], totalBill: 221, server: 'Sosina' },
+  { id: 'T03', number: 3, seats: 2, status: 'reserved', guestName: 'Reservation: 8:00PM', server: 'Tesfaye' },
   { id: 'T04', number: 4, seats: 6, status: 'occupied', guestName: 'Corporate: McKinsey', covers: 5, openedAt: '19:00', linkedRoomId: 'R201', linkedRoomNumber: '201', currentOrder: [
     { menuItemId: 'M005', menuItemName: 'Châteaubriand', quantity: 1, unitPrice: 125, total: 125 },
     { menuItemId: 'M006', menuItemName: 'Wagyu Beef Steak', quantity: 2, unitPrice: 89, total: 178 },
     { menuItemId: 'M001', menuItemName: 'Lobster Bisque', quantity: 3, unitPrice: 24, total: 72 },
     { menuItemId: 'M016', menuItemName: 'Château Margaux 2018', quantity: 1, unitPrice: 280, total: 280 },
-  ], totalBill: 655, server: 'James' },
-  { id: 'T05', number: 5, seats: 4, status: 'available', server: 'Sophie' },
-  { id: 'T06', number: 6, seats: 8, status: 'cleaning', server: 'James' },
-  { id: 'T07', number: 7, seats: 2, status: 'occupied', guestName: 'Sophia Chen', covers: 1, openedAt: '20:10', linkedRoomId: 'R201', linkedRoomNumber: '201', currentOrder: [
+  ], totalBill: 655, server: 'Yared' },
+  { id: 'T05', number: 5, seats: 4, status: 'available', server: 'Sosina' },
+  { id: 'T06', number: 6, seats: 8, status: 'cleaning', server: 'Yared' },
+  { id: 'T07', number: 7, seats: 2, status: 'occupied', guestName: 'Tigist Alemu', covers: 1, openedAt: '20:10', linkedRoomId: 'R201', linkedRoomNumber: '201', currentOrder: [
     { menuItemId: 'M008', menuItemName: 'Truffle Risotto', quantity: 1, unitPrice: 48, total: 48 },
     { menuItemId: 'M012', menuItemName: 'Mango Panna Cotta', quantity: 1, unitPrice: 16, total: 16 },
     { menuItemId: 'M014', menuItemName: 'Fresh Juice Selection', quantity: 2, unitPrice: 12, total: 24 },
-  ], totalBill: 88, server: 'Tom' },
-  { id: 'T08', number: 8, seats: 4, status: 'available', server: 'Sophie' },
-  { id: 'T09', number: 9, seats: 6, status: 'reserved', guestName: 'Reservation: 9:00PM', server: 'James' },
-  { id: 'T10', number: 10, seats: 10, status: 'available', server: 'Tom' },
+  ], totalBill: 88, server: 'Tesfaye' },
+  { id: 'T08', number: 8, seats: 4, status: 'available', server: 'Sosina' },
+  { id: 'T09', number: 9, seats: 6, status: 'reserved', guestName: 'Reservation: 9:00PM', server: 'Yared' },
+  { id: 'T10', number: 10, seats: 10, status: 'available', server: 'Tesfaye' },
   { id: 'T11', number: 11, seats: 2, status: 'occupied', guestName: 'Walk-in', covers: 2, openedAt: '20:30', currentOrder: [
     { menuItemId: 'M007', menuItemName: 'Pan-Seared Sea Bass', quantity: 2, unitPrice: 58, total: 116 },
     { menuItemId: 'M015', menuItemName: 'Cocktail of the Day', quantity: 2, unitPrice: 22, total: 44 },
-  ], totalBill: 160, server: 'Sophie' },
-  { id: 'T12', number: 12, seats: 4, status: 'available', server: 'Tom' },
+  ], totalBill: 160, server: 'Sosina' },
+  { id: 'T12', number: 12, seats: 4, status: 'available', server: 'Tesfaye' },
 ];
 
 // ─── HOUSEKEEPING ─────────────────────────────────────────────
@@ -537,12 +537,12 @@ export interface HousekeepingTask {
 }
 
 export const housekeepingTasks: HousekeepingTask[] = [
-  { id: 'HK001', roomNumber: '202', roomType: 'Deluxe King', floor: 2, status: 'in-progress', assignedTo: 'Maria Garcia', priority: 'high', notes: 'Checkout cleaning', estimatedTime: 45, startedAt: '10:15', type: 'checkout' },
+  { id: 'HK001', roomNumber: '202', roomType: 'Deluxe King', floor: 2, status: 'in-progress', assignedTo: 'Marta Girma', priority: 'high', notes: 'Checkout cleaning', estimatedTime: 45, startedAt: '10:15', type: 'checkout' },
   { id: 'HK002', roomNumber: '108', roomType: 'Deluxe King', floor: 1, status: 'dirty', priority: 'high', notes: 'Just checked out. Guest left items — check & report', type: 'checkout' },
   { id: 'HK003', roomNumber: '304', roomType: 'Deluxe Twin', floor: 3, status: 'dirty', priority: 'medium', notes: 'Stayover service', type: 'stayover' },
-  { id: 'HK004', roomNumber: '502', roomType: 'Deluxe Twin', floor: 5, status: 'inspecting', assignedTo: 'Carlos Ruiz', priority: 'low', notes: 'Ready for inspection', completedAt: '11:30', type: 'stayover' },
-  { id: 'HK005', roomNumber: '203', roomType: 'Junior Suite', floor: 2, status: 'clean', assignedTo: 'Aisha Patel', priority: 'medium', notes: 'Completed', completedAt: '09:45', type: 'stayover' },
-  { id: 'HK006', roomNumber: '101', roomType: 'Deluxe King', floor: 1, status: 'clean', assignedTo: 'Maria Garcia', priority: 'high', notes: 'VIP arrival today — extra flowers added', completedAt: '08:00', type: 'checkout' },
+  { id: 'HK004', roomNumber: '502', roomType: 'Deluxe Twin', floor: 5, status: 'inspecting', assignedTo: 'Kalid Hussien', priority: 'low', notes: 'Ready for inspection', completedAt: '11:30', type: 'stayover' },
+  { id: 'HK005', roomNumber: '203', roomType: 'Junior Suite', floor: 2, status: 'clean', assignedTo: 'Aisha Mohammed', priority: 'medium', notes: 'Completed', completedAt: '09:45', type: 'stayover' },
+  { id: 'HK006', roomNumber: '101', roomType: 'Deluxe King', floor: 1, status: 'clean', assignedTo: 'Marta Girma', priority: 'high', notes: 'VIP arrival today — extra flowers added', completedAt: '08:00', type: 'checkout' },
   { id: 'HK007', roomNumber: '103', roomType: 'Deluxe Twin', floor: 1, status: 'dirty', priority: 'low', type: 'deep-clean' },
   { id: 'HK008', roomNumber: '401', roomType: 'Deluxe King', floor: 4, status: 'dirty', priority: 'medium', notes: 'Maintenance complete, full clean needed', type: 'checkout' },
 ];
@@ -578,7 +578,7 @@ export interface Folio {
 
 export const folios: Folio[] = [
   {
-    id: 'FOL001', reservationId: 'RES001', guestName: 'James Worthington', roomNumber: '101',
+    id: 'FOL001', reservationId: 'RES001', guestName: 'Dawit Bekele', roomNumber: '101',
     checkIn: '2026-10-29', checkOut: '2026-11-02',
     items: [
       { id: 'FI001', description: 'Room Rate — Deluxe King (4 nights)', category: 'Room', date: '2026-10-29', amount: 1400, quantity: 4 },
@@ -593,7 +593,7 @@ export const folios: Folio[] = [
     status: 'partial', creditCard: '**** **** **** 4242',
   },
   {
-    id: 'FOL002', reservationId: 'RES002', guestName: 'Sophia Chen', roomNumber: '201',
+    id: 'FOL002', reservationId: 'RES002', guestName: 'Tigist Alemu', roomNumber: '201',
     checkIn: '2026-10-28', checkOut: '2026-11-04',
     items: [
       { id: 'FI011', description: 'Room Rate — Executive Suite (7 nights)', category: 'Room', date: '2026-10-28', amount: 4550, quantity: 7 },
@@ -606,7 +606,7 @@ export const folios: Folio[] = [
     status: 'partial', creditCard: '**** **** **** 8881',
   },
   {
-    id: 'FOL003', reservationId: 'RES003', guestName: 'Marcus Adeyemi', roomNumber: '302',
+    id: 'FOL003', reservationId: 'RES003', guestName: 'Yonas Girma', roomNumber: '302',
     checkIn: '2026-10-30', checkOut: '2026-11-01',
     items: [
       { id: 'FI021', description: 'Room Rate — Junior Suite (2 nights)', category: 'Room', date: '2026-10-30', amount: 1040, quantity: 2 },
@@ -632,18 +632,18 @@ export interface StaffMember {
 }
 
 export const staffMembers: StaffMember[] = [
-  { id: 'S001', name: 'Victoria Hartley', role: 'General Manager', department: 'Management', email: 'v.hartley@grandluxe.com', phone: '+1 555-001', shift: 'Morning', status: 'active', joinDate: '2018-04-01', avatar: 'https://i.pravatar.cc/150?img=1' },
-  { id: 'S002', name: 'Sarah Mitchell', role: 'Front Desk', department: 'Front Office', email: 's.mitchell@grandluxe.com', phone: '+1 555-002', shift: 'Morning', status: 'active', joinDate: '2021-06-15', avatar: 'https://i.pravatar.cc/150?img=5' },
-  { id: 'S003', name: 'James Thompson', role: 'Front Desk', department: 'Front Office', email: 'j.thompson@grandluxe.com', phone: '+1 555-003', shift: 'Night', status: 'active', joinDate: '2022-01-10', avatar: 'https://i.pravatar.cc/150?img=7' },
-  { id: 'S004', name: 'Maria Garcia', role: 'Housekeeping', department: 'Housekeeping', email: 'm.garcia@grandluxe.com', phone: '+1 555-004', shift: 'Morning', status: 'active', joinDate: '2020-03-22', avatar: 'https://i.pravatar.cc/150?img=9' },
-  { id: 'S005', name: 'Carlos Ruiz', role: 'Housekeeping', department: 'Housekeeping', email: 'c.ruiz@grandluxe.com', phone: '+1 555-005', shift: 'Afternoon', status: 'active', joinDate: '2023-07-01', avatar: 'https://i.pravatar.cc/150?img=8' },
-  { id: 'S006', name: 'Chef Antoine Dupont', role: 'Chef', department: 'F&B', email: 'a.dupont@grandluxe.com', phone: '+1 555-006', shift: 'Split', status: 'active', joinDate: '2019-12-01', avatar: 'https://i.pravatar.cc/150?img=6' },
-  { id: 'S007', name: 'Sophie Williams', role: 'Server', department: 'F&B', email: 's.williams@grandluxe.com', phone: '+1 555-007', shift: 'Afternoon', status: 'active', joinDate: '2022-09-15', avatar: 'https://i.pravatar.cc/150?img=10' },
-  { id: 'S008', name: 'Robert Chen', role: 'Accountant', department: 'Finance', email: 'r.chen@grandluxe.com', phone: '+1 555-008', shift: 'Morning', status: 'active', joinDate: '2020-08-01', avatar: 'https://i.pravatar.cc/150?img=3' },
-  { id: 'S009', name: 'Daniel Park', role: 'Restaurant Manager', department: 'F&B', email: 'd.park@grandluxe.com', phone: '+1 555-009', shift: 'Afternoon', status: 'off-duty', joinDate: '2021-02-14', avatar: 'https://i.pravatar.cc/150?img=4' },
-  { id: 'S010', name: 'David Miller', role: 'Night Auditor', department: 'Audit & Finance', email: 'd.miller@grandluxe.com', phone: '+1 555-010', shift: 'Night', status: 'active', joinDate: '2021-04-12', avatar: 'https://i.pravatar.cc/150?img=11' },
-  { id: 'S011', name: 'Marcus Vance', role: 'Maintenance Engineer', department: 'Engineering', email: 'm.vance@grandluxe.com', phone: '+1 555-011', shift: 'Morning', status: 'active', joinDate: '2020-11-05', avatar: 'https://i.pravatar.cc/150?img=12' },
-  { id: 'S012', name: 'Elena Rostova', role: 'Concierge', department: 'Guest Services', email: 'e.rostova@grandluxe.com', phone: '+1 555-012', shift: 'Afternoon', status: 'active', joinDate: '2023-01-20', avatar: 'https://i.pravatar.cc/150?img=13' },
+  { id: 'S001', name: 'Hiwot Tadesse', role: 'General Manager', department: 'Management', email: 'h.tadesse@grandluxe.com', phone: '+1 555-001', shift: 'Morning', status: 'active', joinDate: '2018-04-01', avatar: 'https://i.pravatar.cc/150?img=1' },
+  { id: 'S002', name: 'Selamawit Bekele', role: 'Front Desk', department: 'Front Office', email: 'sel.bekele@grandluxe.com', phone: '+1 555-002', shift: 'Morning', status: 'active', joinDate: '2021-06-15', avatar: 'https://i.pravatar.cc/150?img=5' },
+  { id: 'S003', name: 'Yared Alemu', role: 'Front Desk', department: 'Front Office', email: 'y.alemu@grandluxe.com', phone: '+1 555-003', shift: 'Night', status: 'active', joinDate: '2022-01-10', avatar: 'https://i.pravatar.cc/150?img=7' },
+  { id: 'S004', name: 'Marta Girma', role: 'Housekeeping', department: 'Housekeeping', email: 'm.girma@grandluxe.com', phone: '+1 555-004', shift: 'Morning', status: 'active', joinDate: '2020-03-22', avatar: 'https://i.pravatar.cc/150?img=9' },
+  { id: 'S005', name: 'Kalid Hussien', role: 'Housekeeping', department: 'Housekeeping', email: 'k.hussien@grandluxe.com', phone: '+1 555-005', shift: 'Afternoon', status: 'active', joinDate: '2023-07-01', avatar: 'https://i.pravatar.cc/150?img=8' },
+  { id: 'S006', name: 'Chef Abebe Worku', role: 'Chef', department: 'F&B', email: 'a.worku@grandluxe.com', phone: '+1 555-006', shift: 'Split', status: 'active', joinDate: '2019-12-01', avatar: 'https://i.pravatar.cc/150?img=6' },
+  { id: 'S007', name: 'Sosina Hailu', role: 'Server', department: 'F&B', email: 's.hailu@grandluxe.com', phone: '+1 555-007', shift: 'Afternoon', status: 'active', joinDate: '2022-09-15', avatar: 'https://i.pravatar.cc/150?img=10' },
+  { id: 'S008', name: 'Robel Tekle', role: 'Accountant', department: 'Finance', email: 'r.tekle@grandluxe.com', phone: '+1 555-008', shift: 'Morning', status: 'active', joinDate: '2020-08-01', avatar: 'https://i.pravatar.cc/150?img=3' },
+  { id: 'S009', name: 'Daniel Mekonnen', role: 'Restaurant Manager', department: 'F&B', email: 'd.mekonnen@grandluxe.com', phone: '+1 555-009', shift: 'Afternoon', status: 'off-duty', joinDate: '2021-02-14', avatar: 'https://i.pravatar.cc/150?img=4' },
+  { id: 'S010', name: 'Dawit Tesfaye', role: 'Night Auditor', department: 'Audit & Finance', email: 'd.tesfaye@grandluxe.com', phone: '+1 555-010', shift: 'Night', status: 'active', joinDate: '2021-04-12', avatar: 'https://i.pravatar.cc/150?img=11' },
+  { id: 'S011', name: 'Mikias Desta', role: 'Maintenance Engineer', department: 'Engineering', email: 'm.desta@grandluxe.com', phone: '+1 555-011', shift: 'Morning', status: 'active', joinDate: '2020-11-05', avatar: 'https://i.pravatar.cc/150?img=12' },
+  { id: 'S012', name: 'Helen Assefa', role: 'Concierge', department: 'Guest Services', email: 'h.assefa@grandluxe.com', phone: '+1 555-012', shift: 'Afternoon', status: 'active', joinDate: '2023-01-20', avatar: 'https://i.pravatar.cc/150?img=13' },
 ];
 
 export const rbacMatrix = {
@@ -788,8 +788,8 @@ export const initialWorkOrders: WorkOrder[] = [
     description: 'Guest reported room temperature stuck at 26°C despite thermostat set to 20°C. Compressor fan inspected; needs coolant valve replacement.',
     priority: 'emergency',
     status: 'in-progress',
-    assignedTo: 'Marcus Vance',
-    reportedBy: 'Housekeeping (Maria Garcia)',
+    assignedTo: 'Mikias Desta',
+    reportedBy: 'Housekeeping (Marta Girma)',
     createdAt: '2026-10-31 08:30',
     estimatedCost: 180,
     affectsRoomAvailability: true,
@@ -802,8 +802,8 @@ export const initialWorkOrders: WorkOrder[] = [
     description: 'Drain line partially clogged after checkout. Requires chemical snake and P-trap inspection before next check-in.',
     priority: 'high',
     status: 'open',
-    assignedTo: 'Marcus Vance',
-    reportedBy: 'Front Desk (Sarah Mitchell)',
+    assignedTo: 'Mikias Desta',
+    reportedBy: 'Front Desk (Selamawit Bekele)',
     createdAt: '2026-10-31 11:15',
     estimatedCost: 65,
     affectsRoomAvailability: false,
@@ -816,7 +816,7 @@ export const initialWorkOrders: WorkOrder[] = [
     description: 'RFID reader battery low warning triggered on lock controller. Replace 4x AA lithium cells and lubricate sliding latch.',
     priority: 'medium',
     status: 'waiting-parts',
-    assignedTo: 'Marcus Vance',
+    assignedTo: 'Mikias Desta',
     reportedBy: 'Inspection Team',
     createdAt: '2026-10-30 16:45',
     estimatedCost: 40,
@@ -830,8 +830,8 @@ export const initialWorkOrders: WorkOrder[] = [
     description: 'Secured wall mount bracket with heavy-duty anchors. Replaced damaged high-speed HDMI cord and tested streaming portal.',
     priority: 'low',
     status: 'completed',
-    assignedTo: 'Marcus Vance',
-    reportedBy: 'Front Desk (James Thompson)',
+    assignedTo: 'Mikias Desta',
+    reportedBy: 'Front Desk (Yared Alemu)',
     createdAt: '2026-10-29 14:00',
     estimatedCost: 50,
     actualCost: 45,
@@ -846,7 +846,7 @@ export const initialWorkOrders: WorkOrder[] = [
     description: 'Leather upholstery seam on armchair #3 loosening. Dispatched to local master leather artisan for restitching.',
     priority: 'medium',
     status: 'open',
-    assignedTo: 'Elena Rostova',
+    assignedTo: 'Helen Assefa',
     reportedBy: 'Concierge Team',
     createdAt: '2026-10-30 09:20',
     estimatedCost: 120,
@@ -870,7 +870,7 @@ export const initialNightAuditChecklist: NightAuditValidationItem[] = [
     label: 'Pending Arrivals Reconciliation',
     description: 'Verify all expected arrivals have checked in or processed as No-Show',
     status: 'warning',
-    actionRequired: '1 Pending Arrival: RES005 (Alexander Wright, Room 402)',
+    actionRequired: '1 Pending Arrival: RES005 (Amanuel Haile, Room 402)',
     details: 'Auto-charge 1st night guarantee if marked No-Show.',
   },
   {

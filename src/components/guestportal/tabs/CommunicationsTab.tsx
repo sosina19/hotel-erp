@@ -293,7 +293,7 @@ export const CommunicationsTab: React.FC<CommunicationsTabProps> = ({ stay }) =>
             <button
               type="button"
               onClick={() => setIsNewRequestModalOpen(true)}
-              className="px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-md transition-all hover:scale-[1.02]"
+              className="px-4 py-2.5 bg-[#1e3a5f] hover:bg-[#2b5182] text-white font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-md transition-all hover:scale-[1.02] border border-blue-400/30"
             >
               <Plus className="w-4 h-4" />
               <span>Submit Request / Inquiry</span>
@@ -333,7 +333,7 @@ export const CommunicationsTab: React.FC<CommunicationsTabProps> = ({ stay }) =>
               : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
           }`}
         >
-          <HelpCircle className="w-3.5 h-3.5 text-amber-500" />
+          <HelpCircle className="w-3.5 h-3.5 text-blue-500" />
           <span>Service Requests ({requests.length})</span>
         </button>
 
@@ -417,12 +417,12 @@ export const CommunicationsTab: React.FC<CommunicationsTabProps> = ({ stay }) =>
                   <div
                     className={`max-w-md rounded-2xl p-3.5 text-xs ${
                       isMe
-                        ? 'bg-amber-500 text-white rounded-tr-none'
+                        ? 'bg-[#1e3a5f] text-white rounded-tr-none'
                         : 'bg-gray-100 dark:bg-gray-700/80 text-gray-900 dark:text-white rounded-tl-none border border-gray-200 dark:border-gray-600'
                     }`}
                   >
                     {!isMe && (
-                      <p className="font-bold text-[10px] text-amber-600 dark:text-amber-400 mb-1">
+                      <p className="font-bold text-[10px] text-blue-600 dark:text-blue-400 mb-1">
                         {msg.senderName} ({msg.senderRole})
                       </p>
                     )}
@@ -459,7 +459,7 @@ export const CommunicationsTab: React.FC<CommunicationsTabProps> = ({ stay }) =>
             <button
               type="submit"
               disabled={!inputMessage.trim()}
-              className="px-4 py-2.5 bg-amber-500 hover:bg-amber-600 disabled:opacity-50 text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-sm"
+              className="px-4 py-2.5 bg-[#1e3a5f] hover:bg-[#2b5182] disabled:opacity-50 text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-sm"
             >
               <span>Send</span>
               <Send className="w-3.5 h-3.5" />
@@ -485,7 +485,7 @@ export const CommunicationsTab: React.FC<CommunicationsTabProps> = ({ stay }) =>
             <button
               type="button"
               onClick={() => setIsNewRequestModalOpen(true)}
-              className="px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold rounded-xl transition-all shadow-xs flex items-center gap-1.5"
+              className="px-3.5 py-2 bg-[#1e3a5f] hover:bg-[#2b5182] text-white text-xs font-bold rounded-xl transition-all shadow-xs flex items-center gap-1.5"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>New Request</span>
@@ -498,7 +498,7 @@ export const CommunicationsTab: React.FC<CommunicationsTabProps> = ({ stay }) =>
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-100 dark:border-gray-700 pb-3">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-mono font-bold text-xs text-amber-600 dark:text-amber-400">
+                      <span className="font-mono font-bold text-xs text-[#1e3a5f] dark:text-blue-400">
                         {req.ticketRef}
                       </span>
                       <h4 className="text-xs font-bold text-gray-900 dark:text-white">
@@ -523,7 +523,7 @@ export const CommunicationsTab: React.FC<CommunicationsTabProps> = ({ stay }) =>
                       req.status === 'Resolved'
                         ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300'
                         : req.status === 'In Progress'
-                        ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300'
+                        ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300'
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
                     }`}>
                       {req.status}
@@ -569,7 +569,7 @@ export const CommunicationsTab: React.FC<CommunicationsTabProps> = ({ stay }) =>
             <button
               type="button"
               onClick={() => setNotifications(prev => prev.map(n => ({ ...n, read: true })))}
-              className="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline"
+              className="text-xs font-bold text-[#1e3a5f] dark:text-blue-400 hover:underline"
             >
               Mark all as read
             </button>
@@ -580,12 +580,12 @@ export const CommunicationsTab: React.FC<CommunicationsTabProps> = ({ stay }) =>
               <div
                 key={notif.id}
                 className={`p-4 flex items-start gap-3.5 transition-colors ${
-                  !notif.read ? 'bg-amber-50/40 dark:bg-amber-900/10' : 'hover:bg-gray-50/50 dark:hover:bg-gray-800/40'
+                  !notif.read ? 'bg-blue-50/40 dark:bg-blue-900/10' : 'hover:bg-gray-50/50 dark:hover:bg-gray-800/40'
                 }`}
               >
                 <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${
                   notif.type === 'room_ready' ? 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30' :
-                  notif.type === 'order_accepted' ? 'bg-amber-100 text-amber-600 dark:bg-amber-900/30' :
+                  notif.type === 'order_accepted' ? 'bg-blue-100 text-[#1e3a5f] dark:bg-blue-900/30' :
                   notif.type === 'cleaning_progress' ? 'bg-blue-100 text-blue-600 dark:bg-blue-900/30' :
                   notif.type === 'maintenance_resolved' ? 'bg-purple-100 text-purple-600 dark:bg-purple-900/30' :
                   notif.type === 'payment_success' ? 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30' :
@@ -603,7 +603,7 @@ export const CommunicationsTab: React.FC<CommunicationsTabProps> = ({ stay }) =>
                 </div>
 
                 {!notif.read && (
-                  <span className="w-2 h-2 rounded-full bg-amber-500 flex-shrink-0 mt-2" />
+                  <span className="w-2 h-2 rounded-full bg-[#1e3a5f] flex-shrink-0 mt-2" />
                 )}
               </div>
             ))}
@@ -757,7 +757,7 @@ export const CommunicationsTab: React.FC<CommunicationsTabProps> = ({ stay }) =>
                   onClick={() => setReqPriority(lvl)}
                   className={`py-2 rounded-xl text-xs font-bold transition-all border ${
                     reqPriority === lvl
-                      ? 'bg-amber-500 text-white border-amber-600'
+                      ? 'bg-[#1e3a5f] text-white border-[#1e3a5f]'
                       : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400'
                   }`}
                 >
@@ -770,7 +770,7 @@ export const CommunicationsTab: React.FC<CommunicationsTabProps> = ({ stay }) =>
           <div className="flex gap-2.5 pt-2">
             <button
               type="submit"
-              className="flex-1 py-2.5 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-xs font-bold transition-colors"
+              className="flex-1 py-2.5 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-xl text-xs font-bold transition-colors"
             >
               Submit Ticket
             </button>

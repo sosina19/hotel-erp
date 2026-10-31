@@ -106,7 +106,7 @@ export const ReviewsTab: React.FC<ReviewsTabProps> = ({ stay }) => {
           <Star
             className={`w-6 h-6 ${
               star <= value
-                ? 'fill-amber-400 text-amber-400'
+                ? 'fill-blue-400 text-blue-400'
                 : 'text-gray-300 dark:text-gray-600'
             }`}
           />
@@ -121,11 +121,11 @@ export const ReviewsTab: React.FC<ReviewsTabProps> = ({ stay }) => {
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Top Banner */}
-      <div className="bg-gradient-to-r from-gray-900 via-amber-950 to-gray-900 text-white rounded-2xl p-6 sm:p-7 shadow-luxury border border-amber-900/40">
+      <div className="bg-gradient-to-r from-gray-900 via-[#1e3a5f] to-gray-900 text-white rounded-2xl p-6 sm:p-7 shadow-luxury border border-blue-900/40">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1">
+              <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 flex items-center gap-1">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span>Verified Resident Feedback</span>
               </span>
@@ -146,11 +146,11 @@ export const ReviewsTab: React.FC<ReviewsTabProps> = ({ stay }) => {
               Hotel Lifetime Score
             </span>
             <div className="flex items-center justify-center gap-1.5 mt-1">
-              <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
+              <Star className="w-5 h-5 fill-blue-400 text-blue-400" />
               <span className="text-2xl font-extrabold text-white">4.9</span>
               <span className="text-xs text-gray-400">/ 5.0</span>
             </div>
-            <span className="text-[10px] text-amber-300 font-bold block mt-0.5">
+            <span className="text-[10px] text-blue-300 font-bold block mt-0.5">
               Top 1% Luxury Hospitality Tier
             </span>
           </div>
@@ -168,7 +168,7 @@ export const ReviewsTab: React.FC<ReviewsTabProps> = ({ stay }) => {
               : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
           }`}
         >
-          <Star className="w-3.5 h-3.5 text-amber-500" />
+          <Star className="w-3.5 h-3.5 text-blue-500" />
           <span>Rate Current Stay (Room #{stay.room})</span>
         </button>
 
@@ -206,7 +206,7 @@ export const ReviewsTab: React.FC<ReviewsTabProps> = ({ stay }) => {
         <div className="card p-6 sm:p-8 space-y-6">
           <div className="border-b border-gray-100 dark:border-gray-700 pb-4">
             <h2 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-amber-500" />
+              <Sparkles className="w-5 h-5 text-blue-500" />
               <span>Multi-Category Guest Satisfaction Evaluation</span>
             </h2>
             <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
@@ -289,7 +289,7 @@ export const ReviewsTab: React.FC<ReviewsTabProps> = ({ stay }) => {
             <button
               type="submit"
               disabled={isSubmitting || !writtenFeedback.trim()}
-              className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 disabled:opacity-50 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2"
+              className="w-full py-3.5 bg-[#1e3a5f] hover:bg-[#2b5182] disabled:opacity-50 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 border border-blue-400/30"
             >
               <Send className="w-4 h-4" />
               <span>Submit Verified Review & Quality Survey</span>
@@ -323,7 +323,7 @@ export const ReviewsTab: React.FC<ReviewsTabProps> = ({ stay }) => {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-100 dark:border-gray-700 pb-3">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-mono font-bold text-xs text-amber-600 dark:text-amber-400">
+                      <span className="font-mono font-bold text-xs text-[#1e3a5f] dark:text-blue-400">
                         {review.bookingRef}
                       </span>
                       <span className="text-xs font-bold text-gray-900 dark:text-white">
@@ -336,12 +336,12 @@ export const ReviewsTab: React.FC<ReviewsTabProps> = ({ stay }) => {
                     <p className="text-[11px] text-gray-400 mt-0.5">{review.stayDates} · Submitted on {review.submittedAt}</p>
                   </div>
 
-                  <div className="flex items-center gap-1 bg-amber-50 dark:bg-amber-900/20 px-3 py-1.5 rounded-xl border border-amber-200 dark:border-amber-800">
-                    <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                    <span className="text-sm font-bold text-amber-700 dark:text-amber-300 font-mono">
+                  <div className="flex items-center gap-1 bg-blue-50 dark:bg-blue-900/20 px-3 py-1.5 rounded-xl border border-blue-200 dark:border-blue-800">
+                    <Star className="w-4 h-4 fill-blue-500 text-blue-500" />
+                    <span className="text-sm font-bold text-[#1e3a5f] dark:text-blue-300 font-mono">
                       {review.overallRating}.0
                     </span>
-                    <span className="text-[10px] text-amber-600 dark:text-amber-400">Overall</span>
+                    <span className="text-[10px] text-[#1e3a5f] dark:text-blue-400">Overall</span>
                   </div>
                 </div>
 
@@ -378,7 +378,7 @@ export const ReviewsTab: React.FC<ReviewsTabProps> = ({ stay }) => {
                 {/* Management Response */}
                 {review.managementResponse && (
                   <div className="p-4 bg-gray-50 dark:bg-gray-800/70 border border-gray-200 dark:border-gray-700 rounded-xl text-xs space-y-1">
-                    <div className="flex items-center justify-between text-[11px] text-amber-600 dark:text-amber-400 font-bold">
+                    <div className="flex items-center justify-between text-[11px] text-[#1e3a5f] dark:text-blue-400 font-bold">
                       <span>Official Response from {review.managementResponse.respondedBy}</span>
                       <span className="text-gray-400 font-normal">{review.managementResponse.responseDate}</span>
                     </div>
@@ -409,10 +409,10 @@ export const ReviewsTab: React.FC<ReviewsTabProps> = ({ stay }) => {
 
           <div className="space-y-3">
             {reviewsList.filter(r => r.managementResponse).map(r => (
-              <div key={r.id} className="card p-5 space-y-3 border-l-4 border-l-amber-500">
+              <div key={r.id} className="card p-5 space-y-3 border-l-4 border-l-[#1e3a5f]">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Building className="w-4 h-4 text-amber-500" />
+                    <Building className="w-4 h-4 text-[#1e3a5f] dark:text-blue-400" />
                     <span className="font-bold text-xs text-gray-900 dark:text-white">
                       {r.managementResponse!.respondedBy}
                     </span>

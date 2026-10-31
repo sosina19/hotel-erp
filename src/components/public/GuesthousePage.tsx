@@ -36,7 +36,7 @@ export const GuesthousePage: React.FC<GuesthousePageProps> = ({ setCurrentPage }
           <h1 className="text-5xl md:text-7xl font-bold text-white font-serif mb-4 drop-shadow-2xl">{config.name}</h1>
           <p className="text-2xl text-white/90 font-light italic mb-2">{config.tagline}</p>
           <div className="flex items-center gap-1 mb-8">
-            {Array.from({ length: config.stars }).map((_, i) => <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />)}
+            {Array.from({ length: config.stars }).map((_, i) => <Star key={i} className="w-5 h-5 fill-blue-400 text-blue-400" />)}
             <span className="text-white/70 text-sm ml-2">4.9/5 · 847 reviews</span>
           </div>
           <div className="flex flex-col sm:flex-row gap-3">

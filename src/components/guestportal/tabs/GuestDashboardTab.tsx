@@ -46,15 +46,15 @@ export const GuestDashboardTab: React.FC<GuestDashboardTabProps> = ({
               <img
                 src={stay.avatar}
                 alt={stay.name}
-                className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-amber-400/80 shadow-md"
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-blue-400/80 shadow-md"
               />
-              <span className="absolute -bottom-1 -right-1 p-1 bg-amber-500 rounded-lg text-white shadow-xs" title="Verified VIP">
+              <span className="absolute -bottom-1 -right-1 p-1 bg-[#1e3a5f] rounded-lg text-white shadow-xs" title="Verified VIP">
                 <Award className="w-3.5 h-3.5" />
               </span>
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-400/20 text-amber-300 border border-amber-400/30">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-blue-500/20 text-blue-300 border border-blue-400/30">
                   {stay.tier} Member
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
@@ -68,7 +68,7 @@ export const GuestDashboardTab: React.FC<GuestDashboardTabProps> = ({
               <p className="text-xs sm:text-sm text-gray-300 mt-0.5 flex items-center gap-2">
                 <span>{stay.assignedProperty}</span>
                 <span>·</span>
-                <span className="font-semibold text-amber-300">Room #{stay.room} ({stay.roomType})</span>
+                <span className="font-semibold text-blue-200">Room #{stay.room} ({stay.roomType})</span>
               </p>
             </div>
           </div>
@@ -81,7 +81,7 @@ export const GuestDashboardTab: React.FC<GuestDashboardTabProps> = ({
               className={`flex items-center justify-center gap-2 px-5 py-3 rounded-2xl text-xs font-bold transition-all shadow-lg ${
                 keyUnlocked
                   ? 'bg-emerald-500 text-white'
-                  : 'bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white'
+                  : 'bg-[#1e3a5f] hover:bg-[#2b5182] text-white border border-blue-400/30'
               }`}
             >
               <KeyRound className={`w-4 h-4 ${unlocking ? 'animate-spin' : ''}`} />
@@ -114,7 +114,7 @@ export const GuestDashboardTab: React.FC<GuestDashboardTabProps> = ({
 
         {/* Stay Dates */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 border border-gray-200 dark:border-gray-700 shadow-xs flex items-center gap-3.5">
-          <div className="w-11 h-11 rounded-xl bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 flex items-center justify-center flex-shrink-0">
+          <div className="w-11 h-11 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-[#1e3a5f] dark:text-blue-400 flex items-center justify-center flex-shrink-0">
             <Calendar className="w-5 h-5" />
           </div>
           <div className="min-w-0">
@@ -200,13 +200,13 @@ export const GuestDashboardTab: React.FC<GuestDashboardTabProps> = ({
           <button
             type="button"
             onClick={() => onNavigateTab('dining')}
-            className="group p-4 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-amber-400 dark:hover:border-amber-400 shadow-xs hover:shadow-md transition-all text-left flex flex-col justify-between min-h-[120px]"
+            className="group p-4 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 shadow-xs hover:shadow-md transition-all text-left flex flex-col justify-between min-h-[120px]"
           >
-            <div className="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-[#1e3a5f] dark:text-blue-400 flex items-center justify-center group-hover:scale-110 transition-transform">
               <Utensils className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-xs font-bold text-gray-900 dark:text-white group-hover:text-amber-600 transition-colors">
+              <p className="text-xs font-bold text-gray-900 dark:text-white group-hover:text-[#1e3a5f] transition-colors">
                 Restaurant & In-Room Dining
               </p>
               <p className="text-[11px] text-gray-500 mt-0.5">Browse Menus & Track Orders Live</p>
@@ -268,13 +268,13 @@ export const GuestDashboardTab: React.FC<GuestDashboardTabProps> = ({
           <button
             type="button"
             onClick={() => onNavigateTab('reviews')}
-            className="group p-4 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-amber-400 dark:hover:border-amber-400 shadow-xs hover:shadow-md transition-all text-left flex flex-col justify-between min-h-[120px]"
+            className="group p-4 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 shadow-xs hover:shadow-md transition-all text-left flex flex-col justify-between min-h-[120px]"
           >
-            <div className="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-[#1e3a5f] dark:text-blue-400 flex items-center justify-center group-hover:scale-110 transition-transform">
               <Star className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-xs font-bold text-gray-900 dark:text-white group-hover:text-amber-600 transition-colors">
+              <p className="text-xs font-bold text-gray-900 dark:text-white group-hover:text-[#1e3a5f] transition-colors">
                 Reviews & Satisfaction
               </p>
               <p className="text-[11px] text-gray-500 mt-0.5">Rate Stay & View GM Responses</p>
@@ -324,8 +324,8 @@ export const GuestDashboardTab: React.FC<GuestDashboardTabProps> = ({
             <span className="text-[10px] text-gray-400 ml-auto whitespace-nowrap">20m ago</span>
           </div>
 
-          <div className="p-3 rounded-xl bg-amber-50/60 dark:bg-amber-950/20 border border-amber-100 dark:border-amber-900/30 flex items-start gap-3">
-            <div className="w-2 h-2 rounded-full bg-amber-500 mt-1.5 flex-shrink-0" />
+          <div className="p-3 rounded-xl bg-blue-50/60 dark:bg-blue-950/20 border border-blue-100 dark:border-blue-900/30 flex items-start gap-3">
+            <div className="w-2 h-2 rounded-full bg-[#1e3a5f] mt-1.5 flex-shrink-0" />
             <div className="text-xs text-gray-700 dark:text-gray-300 min-w-0">
               <p className="font-bold text-gray-900 dark:text-white">Executive Chef's Tasting Menu Invitation</p>
               <p className="text-gray-500 dark:text-gray-400 mt-0.5">

@@ -151,7 +151,7 @@ export const CurrentStayTab: React.FC<CurrentStayTabProps> = ({ stay, onAddToast
                       key={idx}
                       onClick={() => setActiveImgIndex(idx)}
                       className={`w-10 h-8 rounded-lg overflow-hidden border-2 transition-all ${
-                        activeImgIndex === idx ? 'border-amber-400 scale-105' : 'border-transparent opacity-60'
+                        activeImgIndex === idx ? 'border-blue-400 scale-105' : 'border-transparent opacity-60'
                       }`}
                     >
                       <img src={img} className="w-full h-full object-cover" alt="" />
@@ -267,7 +267,7 @@ export const CurrentStayTab: React.FC<CurrentStayTabProps> = ({ stay, onAddToast
               className="w-full flex items-center justify-between p-3 rounded-2xl bg-gray-50 hover:bg-gray-100 dark:bg-gray-700/50 dark:hover:bg-gray-700 text-gray-900 dark:text-white text-xs font-semibold transition-colors"
             >
               <div className="flex items-center gap-2.5">
-                <ArrowRightLeft className="w-4 h-4 text-amber-600" />
+                <ArrowRightLeft className="w-4 h-4 text-[#1e3a5f] dark:text-blue-400" />
                 <span>Request Room Change or Upgrade</span>
               </div>
               <ChevronRight className="w-4 h-4 text-gray-400" />
@@ -338,7 +338,7 @@ export const CurrentStayTab: React.FC<CurrentStayTabProps> = ({ stay, onAddToast
       {/* Room Change Modal */}
       <Modal isOpen={isRoomChangeModalOpen} onClose={() => setIsRoomChangeModalOpen(false)} title="Request Room Change / Transfer">
         <form onSubmit={handleRequestRoomChange} className="p-6 space-y-4">
-          <div className="p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl text-xs text-amber-900 dark:text-amber-200">
+          <div className="p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl text-xs text-[#1e3a5f] dark:text-blue-200">
             Room transfers require Front Office review and housekeeping inspection before luggage transfer.
           </div>
           <div>
@@ -364,7 +364,7 @@ export const CurrentStayTab: React.FC<CurrentStayTabProps> = ({ stay, onAddToast
           </div>
           <div className="flex justify-end gap-2 pt-2 border-t">
             <button type="button" onClick={() => setIsRoomChangeModalOpen(false)} className="px-4 py-2 border rounded-xl text-xs">Cancel</button>
-            <button type="submit" className="px-5 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold">
+            <button type="submit" className="px-5 py-2 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-xl text-xs font-bold">
               Submit Transfer Request
             </button>
           </div>

@@ -314,17 +314,17 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
   return (
     <div className="space-y-6 animate-fade-in">
       {/* ─── TOP CHEF'S DAILY SPECIAL BANNER ─── */}
-      <div className="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 rounded-3xl p-6 text-white shadow-luxury flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+      <div className="bg-gradient-to-r from-[#0a1628] via-[#1e3a5f] to-[#0a1628] rounded-3xl p-6 text-white shadow-luxury flex flex-col sm:flex-row sm:items-center justify-between gap-5 border border-blue-500/20">
         <div className="flex items-center gap-4">
           <div className="w-13 h-13 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center font-bold text-white shadow-xs">
-            <Flame className="w-7 h-7 text-amber-100" />
+            <Flame className="w-7 h-7 text-blue-200" />
           </div>
           <div>
             <div className="flex items-center gap-2">
               <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/25">
                 Executive Chef Special
               </span>
-              <span className="text-xs text-amber-100 font-semibold">Available for In-Room Dining</span>
+              <span className="text-xs text-blue-200 font-semibold">Available for In-Room Dining</span>
             </div>
             <h3 className="text-base sm:text-lg font-bold font-serif mt-0.5">
               Wild Pan-Seared Chilean Sea Bass with Saffron Emulsion & Oscietra Caviar
@@ -341,9 +341,9 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
             const seaBass = enhancedItems.find(i => i.id === 'M007') || enhancedItems[0];
             handleOpenCustomizer(seaBass);
           }}
-          className="flex-shrink-0 px-5 py-3 bg-white text-orange-700 hover:bg-orange-50 rounded-xl font-bold text-xs shadow-md transition-all hover:scale-[1.02] flex items-center justify-center gap-2"
+          className="flex-shrink-0 px-5 py-3 bg-white text-[#1e3a5f] hover:bg-blue-50 rounded-xl font-bold text-xs shadow-md transition-all hover:scale-[1.02] flex items-center justify-center gap-2"
         >
-          <Sparkles className="w-4 h-4 text-orange-500" />
+          <Sparkles className="w-4 h-4 text-blue-600" />
           <span>Customize & Order Special ($58)</span>
         </button>
       </div>
@@ -356,11 +356,11 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
             onClick={() => setActiveSubTab('menu')}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
               activeSubTab === 'menu'
-                ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm'
+                ? 'bg-[#1e3a5f] text-white shadow-sm'
                 : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
             }`}
           >
-            <Utensils className="w-3.5 h-3.5 text-amber-500" />
+            <Utensils className="w-3.5 h-3.5 text-blue-300" />
             <span>Browse Restaurant Menus</span>
           </button>
 
@@ -400,12 +400,12 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
         <button
           type="button"
           onClick={() => setIsCartOpen(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-xl font-bold text-xs shadow-md transition-all hover:scale-[1.02]"
+          className="flex items-center gap-2 px-4 py-2 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-xl font-bold text-xs shadow-md transition-all hover:scale-[1.02]"
         >
-          <ShoppingBag className="w-3.5 h-3.5" />
+          <ShoppingBag className="w-3.5 h-3.5 text-blue-300" />
           <span>Tray</span>
           {cartCount > 0 && (
-            <span className="px-2 py-0.2 rounded-full text-[10px] bg-black/30 font-bold">
+            <span className="px-2 py-0.2 rounded-full text-[10px] bg-white text-[#1e3a5f] font-bold">
               {cartCount} (${cartSubtotal.toFixed(0)})
             </span>
           )}
@@ -426,7 +426,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                 onClick={() => setSelectedRestaurant(res.id)}
                 className={`px-4 py-2.5 rounded-2xl text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 ${
                   selectedRestaurant === res.id
-                    ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900 shadow-sm'
+                    ? 'bg-[#1e3a5f] text-white shadow-sm'
                     : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-50'
                 }`}
               >
@@ -464,7 +464,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                     onClick={() => setDietaryFilter(f.id)}
                     className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors ${
                       dietaryFilter === f.id
-                        ? 'bg-amber-100 text-amber-900 dark:bg-amber-900/40 dark:text-amber-200 font-bold'
+                        ? 'bg-blue-100 text-[#1e3a5f] dark:bg-blue-900/40 dark:text-blue-200 font-bold'
                         : 'text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700'
                     }`}
                   >
@@ -483,7 +483,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                   onClick={() => setSelectedCategory(cat)}
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
                     selectedCategory === cat
-                      ? 'bg-amber-500 text-white shadow-xs'
+                      ? 'bg-[#1e3a5f] text-white shadow-xs'
                       : 'bg-gray-100 dark:bg-gray-700/60 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                   }`}
                 >
@@ -517,7 +517,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                         </span>
                       )}
                       {item.isHalal && (
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-600 text-white">
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#1e3a5f] text-white">
                           Halal
                         </span>
                       )}
@@ -545,7 +545,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
 
                     {/* Allergen Tag Flags */}
                     {item.allergens && item.allergens.length > 0 && (
-                      <div className="flex items-center gap-1 text-[10px] text-amber-700 dark:text-amber-400 pt-1 font-semibold">
+                      <div className="flex items-center gap-1 text-[10px] text-[#1e3a5f] dark:text-blue-400 pt-1 font-semibold">
                         <AlertTriangle className="w-3 h-3 flex-shrink-0" />
                         <span>Allergens: {item.allergens.join(', ')}</span>
                       </div>
@@ -558,7 +558,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                     <button
                       type="button"
                       onClick={() => handleOpenCustomizer(item)}
-                      className="w-full py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm"
+                      className="w-full py-2.5 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       <span>Select Amount & Customize</span>
@@ -606,7 +606,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveSubTab('menu')}
-                className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-xs font-bold transition-colors"
+                className="px-4 py-2 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-xl text-xs font-bold transition-colors"
               >
                 Browse Restaurant Menu
               </button>
@@ -619,17 +619,17 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                 const currentStepIndex = steps.indexOf(order.status);
 
                 return (
-                  <div key={order.id} className="card p-6 space-y-5 border-l-4 border-l-amber-500">
+                  <div key={order.id} className="card p-6 space-y-5 border-l-4 border-l-[#1e3a5f]">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b pb-4 border-gray-100 dark:border-gray-700">
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="font-mono font-bold text-sm text-amber-600 dark:text-amber-400">
+                          <span className="font-mono font-bold text-sm text-[#1e3a5f] dark:text-blue-400">
                             {order.id}
                           </span>
                           <span className="text-xs font-bold text-gray-900 dark:text-white">
                             {order.restaurantName}
                           </span>
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300">
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300">
                             {order.deliveryType}
                           </span>
                         </div>
@@ -654,7 +654,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                             key={st}
                             className={
                               i <= currentStepIndex
-                                ? 'text-amber-600 dark:text-amber-400 font-extrabold'
+                                ? 'text-[#1e3a5f] dark:text-blue-400 font-extrabold'
                                 : 'text-gray-400'
                             }
                           >
@@ -667,7 +667,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                           <div
                             key={i}
                             className={`flex-1 transition-all duration-500 ${
-                              i <= currentStepIndex ? 'bg-amber-500' : 'bg-transparent'
+                              i <= currentStepIndex ? 'bg-[#1e3a5f]' : 'bg-transparent'
                             }`}
                           />
                         ))}
@@ -686,7 +686,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                               {it.quantity}x {it.name}
                             </span>
                             {it.preparationOption && (
-                              <span className="ml-2 px-1.5 py-0.2 rounded text-[10px] bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 font-semibold">
+                              <span className="ml-2 px-1.5 py-0.2 rounded text-[10px] bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 font-semibold">
                                 {it.preparationOption}
                               </span>
                             )}
@@ -717,7 +717,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                     {/* Runner & Cancel Option */}
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs pt-1">
                       <div className="flex items-center gap-2 text-gray-500">
-                        <Package className="w-4 h-4 text-amber-500" />
+                        <Package className="w-4 h-4 text-blue-500" />
                         <span>Assigned Dispatch: <strong>{order.assignedServer}</strong></span>
                       </div>
 
@@ -769,7 +769,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                         ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300'
                         : order.status === 'Cancelled'
                         ? 'bg-rose-100 dark:bg-rose-900/30 text-rose-800 dark:text-rose-300'
-                        : 'bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300'
+                        : 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300'
                     }`}>
                       {order.status}
                     </span>
@@ -801,7 +801,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                         message: `Order ${order.id} configuration loaded into dining tray.`,
                       });
                     }}
-                    className="px-3.5 py-2 border border-gray-200 dark:border-gray-700 hover:border-amber-400 text-xs font-bold rounded-xl transition-colors"
+                    className="px-3.5 py-2 border border-gray-200 dark:border-gray-700 hover:border-blue-500 text-xs font-bold rounded-xl transition-colors"
                   >
                     Reorder Dishes
                   </button>
@@ -835,7 +835,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                   <h3 className="text-base font-bold text-gray-900 dark:text-white">
                     {customizingItem.name}
                   </h3>
-                  <span className="text-base font-mono font-extrabold text-amber-600 dark:text-amber-400">
+                  <span className="text-base font-mono font-extrabold text-[#1e3a5f] dark:text-blue-400">
                     ${customizingItem.price.toFixed(2)}
                   </span>
                 </div>
@@ -847,7 +847,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                     {customizingItem.category}
                   </span>
                   {customizingItem.allergens && (
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-50 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 font-semibold">
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 font-semibold">
                       Contains: {customizingItem.allergens.join(', ')}
                     </span>
                   )}
@@ -856,7 +856,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
             </div>
 
             {/* 1. ASK THE AMOUNT / QUANTITY */}
-            <div className="p-4 bg-amber-50/60 dark:bg-amber-950/20 rounded-2xl border border-amber-200/80 dark:border-amber-900/40 space-y-2">
+            <div className="p-4 bg-blue-50/60 dark:bg-blue-950/20 rounded-2xl border border-blue-200/80 dark:border-blue-900/40 space-y-2">
               <div className="flex items-center justify-between">
                 <div>
                   <label className="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-wider block">
@@ -867,7 +867,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                   </span>
                 </div>
 
-                <div className="flex items-center gap-3 bg-white dark:bg-gray-800 p-1.5 rounded-xl border border-amber-200 dark:border-amber-800 shadow-xs">
+                <div className="flex items-center gap-3 bg-white dark:bg-gray-800 p-1.5 rounded-xl border border-blue-200 dark:border-blue-800 shadow-xs">
                   <button
                     type="button"
                     onClick={() => setItemQuantity(Math.max(1, itemQuantity - 1))}
@@ -881,7 +881,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                   <button
                     type="button"
                     onClick={() => setItemQuantity(Math.min(10, itemQuantity + 1))}
-                    className="w-8 h-8 rounded-lg bg-amber-500 hover:bg-amber-600 flex items-center justify-center font-bold text-white transition-colors"
+                    className="w-8 h-8 rounded-lg bg-[#1e3a5f] hover:bg-[#2b5182] flex items-center justify-center font-bold text-white transition-colors"
                   >
                     <Plus className="w-4 h-4" />
                   </button>
@@ -909,7 +909,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                       onClick={() => setSelectedDoneness(opt.id)}
                       className={`p-2.5 rounded-xl text-left border-2 transition-all ${
                         selectedDoneness === opt.id
-                          ? 'border-amber-500 bg-amber-50 dark:bg-amber-900/20 shadow-xs'
+                          ? 'border-[#1e3a5f] bg-blue-50 dark:bg-blue-900/20 shadow-xs'
                           : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
                       }`}
                     >
@@ -939,7 +939,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                       onClick={() => setSelectedDressing(opt)}
                       className={`p-2.5 rounded-xl text-left border-2 text-xs font-semibold transition-all ${
                         selectedDressing === opt
-                          ? 'border-amber-500 bg-amber-50 dark:bg-amber-900/20 text-gray-900 dark:text-white'
+                          ? 'border-[#1e3a5f] bg-blue-50 dark:bg-blue-900/20 text-gray-900 dark:text-white'
                           : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400'
                       }`}
                     >
@@ -963,7 +963,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                       onClick={() => setSelectedDrinkTemp(opt)}
                       className={`p-2.5 rounded-xl text-left border-2 text-xs font-semibold transition-all ${
                         selectedDrinkTemp === opt
-                          ? 'border-amber-500 bg-amber-50 dark:bg-amber-900/20 text-gray-900 dark:text-white'
+                          ? 'border-[#1e3a5f] bg-blue-50 dark:bg-blue-900/20 text-gray-900 dark:text-white'
                           : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400'
                       }`}
                     >
@@ -994,19 +994,19 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                       onClick={() => handleToggleAddOn(addon)}
                       className={`flex items-center justify-between p-3 rounded-xl border-2 cursor-pointer transition-all ${
                         isChecked
-                          ? 'border-amber-500 bg-amber-50/50 dark:bg-amber-900/20'
+                          ? 'border-[#1e3a5f] bg-blue-50/50 dark:bg-blue-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
                       }`}
                     >
                       <div className="flex items-center gap-2.5">
-                        <div className={`w-4 h-4 rounded border flex items-center justify-center ${isChecked ? 'bg-amber-500 border-amber-500 text-white' : 'border-gray-400'}`}>
+                        <div className={`w-4 h-4 rounded border flex items-center justify-center ${isChecked ? 'bg-[#1e3a5f] border-[#1e3a5f] text-white' : 'border-gray-400'}`}>
                           {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
                         </div>
                         <span className="text-xs font-medium text-gray-900 dark:text-white">
                           {addon.name}
                         </span>
                       </div>
-                      <span className="text-xs font-mono font-bold text-amber-600 dark:text-amber-400 ml-2">
+                      <span className="text-xs font-mono font-bold text-[#1e3a5f] dark:text-blue-400 ml-2">
                         +${addon.price.toFixed(2)}
                       </span>
                     </label>
@@ -1033,7 +1033,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                       onClick={() => setCutleryCount(num)}
                       className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                         cutleryCount === num
-                          ? 'bg-amber-500 text-white'
+                          ? 'bg-[#1e3a5f] text-white'
                           : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600'
                       }`}
                     >
@@ -1069,11 +1069,11 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                         onClick={() => handleToggleCondiment(cond)}
                         className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-all flex items-center gap-1.5 ${
                           isSelected
-                            ? 'bg-amber-100 text-amber-900 dark:bg-amber-900/40 dark:text-amber-200 border border-amber-300 dark:border-amber-700'
+                            ? 'bg-blue-100 text-[#1e3a5f] dark:bg-blue-900/40 dark:text-blue-200 border border-blue-300 dark:border-blue-700'
                             : 'bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-600'
                         }`}
                       >
-                        {isSelected && <Check className="w-3 h-3 text-amber-600" />}
+                        {isSelected && <Check className="w-3 h-3 text-[#1e3a5f]" />}
                         <span>{cond}</span>
                       </button>
                     );
@@ -1101,9 +1101,9 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
               <button
                 type="button"
                 onClick={handleAddCustomizedToCart}
-                className="flex-1 py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-xl text-xs font-bold shadow-md transition-all flex items-center justify-center gap-2"
+                className="flex-1 py-3.5 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-xl text-xs font-bold shadow-md transition-all flex items-center justify-center gap-2"
               >
-                <ShoppingBag className="w-4 h-4" />
+                <ShoppingBag className="w-4 h-4 text-blue-300" />
                 <span>
                   Add {itemQuantity}x to Tray • ${customizedItemTotalPrice.toFixed(2)} USD
                 </span>
@@ -1140,7 +1140,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
               <button
                 type="button"
                 onClick={() => setIsCartOpen(false)}
-                className="px-4 py-2 bg-amber-500 text-white rounded-xl text-xs font-bold"
+                className="px-4 py-2 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-xl text-xs font-bold transition-colors"
               >
                 Explore Menus
               </button>
@@ -1156,7 +1156,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                         <div className="flex items-center gap-2">
                           <span className="font-bold text-gray-900 dark:text-white">{item.name}</span>
                           {item.preparationOption && (
-                            <span className="px-1.5 py-0.2 rounded text-[10px] bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 font-bold">
+                            <span className="px-1.5 py-0.2 rounded text-[10px] bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 font-bold">
                               {item.preparationOption}
                             </span>
                           )}
@@ -1200,7 +1200,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                     )}
 
                     {item.specialInstructions && (
-                      <p className="text-[10px] text-amber-700 dark:text-amber-400 italic">
+                      <p className="text-[10px] text-[#1e3a5f] dark:text-blue-400 italic">
                         Note: "{item.specialInstructions}"
                       </p>
                     )}
@@ -1209,9 +1209,9 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
               </div>
 
               {/* QUICK ADD EXTRAS BEFORE CHECKOUT CAROUSEL */}
-              <div className="p-3 bg-amber-50/60 dark:bg-amber-950/20 rounded-2xl border border-amber-200/80 dark:border-amber-900/40 space-y-2">
-                <span className="text-[11px] font-bold text-amber-900 dark:text-amber-200 flex items-center gap-1">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+              <div className="p-3 bg-blue-50/60 dark:bg-blue-950/20 rounded-2xl border border-blue-200/80 dark:border-blue-900/40 space-y-2">
+                <span className="text-[11px] font-bold text-blue-900 dark:text-blue-200 flex items-center gap-1">
+                  <Sparkles className="w-3.5 h-3.5 text-blue-600" />
                   <span>Would You Like Anything Else Before Placing Order?</span>
                 </span>
                 <div className="flex gap-2 overflow-x-auto scrollbar-none pb-1">
@@ -1241,9 +1241,9 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                           message: `${quick.name} added to dining tray.`,
                         });
                       }}
-                      className="px-3 py-1.5 bg-white dark:bg-gray-800 border border-amber-300 dark:border-amber-700 rounded-xl text-[11px] font-bold text-gray-800 dark:text-gray-200 whitespace-nowrap hover:bg-amber-100 transition-colors flex items-center gap-1.5"
+                      className="px-3 py-1.5 bg-white dark:bg-gray-800 border border-blue-300 dark:border-blue-700 rounded-xl text-[11px] font-bold text-gray-800 dark:text-gray-200 whitespace-nowrap hover:bg-blue-100 transition-colors flex items-center gap-1.5"
                     >
-                      <Plus className="w-3 h-3 text-amber-600" />
+                      <Plus className="w-3 h-3 text-[#1e3a5f]" />
                       <span>{quick.name} (+${quick.price})</span>
                     </button>
                   ))}
@@ -1318,7 +1318,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                 </div>
                 <div className="flex justify-between font-bold text-sm text-gray-900 dark:text-white pt-2 border-t border-gray-200 dark:border-gray-700">
                   <span>Total Amount</span>
-                  <span className="font-mono text-amber-600 dark:text-amber-400 font-extrabold text-base">
+                  <span className="font-mono text-[#1e3a5f] dark:text-blue-400 font-extrabold text-base">
                     ${cartTotal.toFixed(2)} USD
                   </span>
                 </div>
@@ -1334,9 +1334,9 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-xl text-xs font-bold shadow-md transition-all flex items-center justify-center gap-1.5"
+                  className="flex-1 py-2.5 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-xl text-xs font-bold shadow-md transition-all flex items-center justify-center gap-1.5"
                 >
-                  <CheckCircle2 className="w-4 h-4" />
+                  <CheckCircle2 className="w-4 h-4 text-blue-300" />
                   <span>Confirm & Place Order (${cartTotal.toFixed(2)})</span>
                 </button>
               </div>

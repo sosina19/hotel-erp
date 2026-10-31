@@ -136,18 +136,18 @@ export const GuestProfileTab: React.FC<GuestProfileTabProps> = ({
         </div>
 
         {/* Loyalty Points Capsule */}
-        <div className="flex items-center gap-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 p-4 rounded-2xl">
-          <div className="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold">
-            <Award className="w-5 h-5" />
+        <div className="flex items-center gap-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-4 rounded-2xl">
+          <div className="w-10 h-10 rounded-xl bg-[#1e3a5f] text-white flex items-center justify-center font-bold">
+            <Award className="w-5 h-5 text-blue-300" />
           </div>
           <div>
-            <p className="text-[11px] uppercase font-bold text-amber-800 dark:text-amber-200">
+            <p className="text-[11px] uppercase font-bold text-[#1e3a5f] dark:text-blue-200">
               LuxeRewards Balance
             </p>
-            <p className="text-lg font-bold text-amber-900 dark:text-amber-100">
+            <p className="text-lg font-bold text-blue-900 dark:text-blue-100">
               {profile.loyaltyPoints.toLocaleString()} Points
             </p>
-            <p className="text-[10px] text-amber-700 dark:text-amber-300">
+            <p className="text-[10px] text-blue-700 dark:text-blue-300">
               Equivalent to ${(profile.loyaltyPoints / 100).toFixed(2)} in hotel credit
             </p>
           </div>
@@ -427,7 +427,7 @@ export const GuestProfileTab: React.FC<GuestProfileTabProps> = ({
       {/* ID Correction Request Modal */}
       <Modal isOpen={isCorrectionModalOpen} onClose={() => setIsCorrectionModalOpen(false)} title="Request Official Identity Document Correction">
         <form onSubmit={handleRequestCorrection} className="p-6 space-y-4">
-          <div className="p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl text-xs text-amber-900 dark:text-amber-200">
+          <div className="p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl text-xs text-blue-900 dark:text-blue-200">
             <strong>Security Notice:</strong> Front Office regulations require staff approval before modifying verified legal travel documents. Please submit the updated details along with justification.
           </div>
           <div>

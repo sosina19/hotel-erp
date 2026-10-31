@@ -44,7 +44,7 @@ export const PublicNav: React.FC<PublicNavProps> = ({ currentPage, setCurrentPag
               {config.stars > 1 && (
                 <div className="flex gap-0.5 mt-0.5">
                   {Array.from({ length: Math.min(config.stars, 5) }).map((_, i) => (
-                    <Star key={i} className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
+                    <Star key={i} className="w-2.5 h-2.5 fill-blue-300 text-blue-300" />
                   ))}
                 </div>
               )}

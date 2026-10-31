@@ -219,14 +219,14 @@ export const StayHistoryTab: React.FC<StayHistoryTabProps> = ({ onAddToast, onRe
 
             {/* Existing Review or Leave Review */}
             {stay.reviewGiven ? (
-              <div className="p-3 bg-amber-50/70 dark:bg-amber-950/20 rounded-2xl border border-amber-200 dark:border-amber-900/30 mb-4 flex items-start gap-2.5 text-xs">
+              <div className="p-3 bg-blue-50/70 dark:bg-blue-950/20 rounded-2xl border border-blue-200 dark:border-blue-900/30 mb-4 flex items-start gap-2.5 text-xs">
                 <div className="flex gap-0.5 mt-0.5 flex-shrink-0">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star
                       key={i}
                       className={`w-3.5 h-3.5 ${
                         i < stay.reviewGiven!.stars
-                          ? 'fill-amber-400 text-amber-400'
+                          ? 'fill-blue-500 text-blue-500'
                           : 'text-gray-300 dark:text-gray-600'
                       }`}
                     />
@@ -242,7 +242,7 @@ export const StayHistoryTab: React.FC<StayHistoryTabProps> = ({ onAddToast, onRe
                 <button
                   type="button"
                   onClick={() => setReviewStay(stay)}
-                  className="text-xs text-amber-600 dark:text-amber-400 font-semibold hover:underline flex items-center gap-1.5"
+                  className="text-xs text-[#1e3a5f] dark:text-blue-400 font-semibold hover:underline flex items-center gap-1.5"
                 >
                   <Star className="w-3.5 h-3.5" />
                   Leave Guest Review & Feedback for this stay
@@ -293,7 +293,7 @@ export const StayHistoryTab: React.FC<StayHistoryTabProps> = ({ onAddToast, onRe
                   onClick={() => setReviewStars(star)}
                   className="p-1 hover:scale-110 transition-transform"
                 >
-                  <Star className={`w-6 h-6 ${star <= reviewStars ? 'fill-amber-400 text-amber-400' : 'text-gray-300'}`} />
+                  <Star className={`w-6 h-6 ${star <= reviewStars ? 'fill-blue-500 text-blue-500' : 'text-gray-300'}`} />
                 </button>
               ))}
             </div>
@@ -315,7 +315,7 @@ export const StayHistoryTab: React.FC<StayHistoryTabProps> = ({ onAddToast, onRe
             <button type="button" onClick={() => setReviewStay(null)} className="px-4 py-2 border rounded-xl text-xs">
               Cancel
             </button>
-            <button type="submit" className="px-5 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-xs font-bold flex items-center gap-1.5">
+            <button type="submit" className="px-5 py-2 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-xl text-xs font-bold flex items-center gap-1.5">
               <Send className="w-3.5 h-3.5" /> Submit Review
             </button>
           </div>

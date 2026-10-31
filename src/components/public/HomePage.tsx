@@ -30,7 +30,7 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
           <div className="flex items-center gap-1 mb-4">
             {Array.from({ length: config.stars }).map((_, i) => (
-              <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+              <Star key={i} className="w-5 h-5 fill-blue-400 text-blue-400" />
             ))}
           </div>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white font-serif mb-4 drop-shadow-2xl">
@@ -144,7 +144,7 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white font-serif">What Our Guests Say</h2>
           <div className="flex items-center justify-center gap-2 mt-3">
             <div className="flex gap-0.5">
-              {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />)}
+              {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-blue-400 text-blue-400" />)}
             </div>
             <span className="text-gray-600 dark:text-gray-400 text-sm font-medium">4.9/5 · 2,847 reviews</span>
           </div>
@@ -153,7 +153,7 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
           {reviews.map((r, i) => (
             <div key={i} className="p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-card">
               <div className="flex gap-0.5 mb-3">
-                {[...Array(r.rating)].map((_, j) => <Star key={j} className="w-4 h-4 fill-amber-400 text-amber-400" />)}
+                {[...Array(r.rating)].map((_, j) => <Star key={j} className="w-4 h-4 fill-blue-400 text-blue-400" />)}
               </div>
               <p className="text-gray-600 dark:text-gray-400 italic mb-4 leading-relaxed">"{r.text}"</p>
               <div className="flex items-center justify-between">

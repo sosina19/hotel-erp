@@ -38,7 +38,7 @@ export const RestaurantPage: React.FC<RestaurantPageProps> = ({ setCurrentPage }
         <img src={config.heroImage} alt="Restaurant" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/80" />
         <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
-          <p className="text-amber-400 font-semibold text-sm uppercase tracking-[0.3em] mb-4">Fine Dining Experience</p>
+          <p className="text-blue-300 font-semibold text-sm uppercase tracking-[0.3em] mb-4">Fine Dining Experience</p>
           <h1 className="text-5xl md:text-7xl font-bold text-white font-serif mb-4 drop-shadow-2xl">{config.name}</h1>
           <p className="text-xl text-white/80 font-light italic mb-2">{config.tagline}</p>
           <p className="text-white/60 text-sm mb-8 flex items-center gap-1.5">
@@ -47,7 +47,7 @@ export const RestaurantPage: React.FC<RestaurantPageProps> = ({ setCurrentPage }
           <div className="flex flex-col sm:flex-row gap-3">
             <button
               onClick={() => setShowReserveModal(true)}
-              className="px-10 py-4 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-bold text-lg transition-all shadow-luxury hover:scale-105"
+              className="px-10 py-4 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-xl font-bold text-lg transition-all shadow-luxury hover:scale-105 border border-blue-400/30"
             >
               Reserve a Table
             </button>
@@ -59,7 +59,7 @@ export const RestaurantPage: React.FC<RestaurantPageProps> = ({ setCurrentPage }
             </button>
           </div>
           <div className="mt-8 flex items-center gap-4">
-            <div className="flex gap-0.5">{[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />)}</div>
+            <div className="flex gap-0.5">{[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-blue-400 text-blue-400" />)}</div>
             <span className="text-white/70 text-sm">Michelin Recognized · 4.9/5 · 1,240 reviews</span>
           </div>
         </div>
@@ -89,7 +89,7 @@ export const RestaurantPage: React.FC<RestaurantPageProps> = ({ setCurrentPage }
       <section className="py-16 px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           <div>
-            <p className="text-amber-600 font-semibold text-sm uppercase tracking-widest mb-3">Our Philosophy</p>
+            <p className="text-[#1e3a5f] dark:text-blue-400 font-semibold text-sm uppercase tracking-widest mb-3">Our Philosophy</p>
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white font-serif mb-4 leading-tight">
               Flavour Born from<br />Fire & Passion
             </h2>
@@ -103,12 +103,12 @@ export const RestaurantPage: React.FC<RestaurantPageProps> = ({ setCurrentPage }
                 { value: '98%', label: 'Guest Satisfaction' },
               ].map(stat => (
                 <div key={stat.label} className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
-                  <p className="text-2xl font-bold text-amber-600">{stat.value}</p>
+                  <p className="text-2xl font-bold text-[#1e3a5f] dark:text-blue-400">{stat.value}</p>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{stat.label}</p>
                 </div>
               ))}
             </div>
-            <button onClick={() => setCurrentPage('menu')} className="flex items-center gap-2 text-amber-600 font-semibold hover:gap-3 transition-all">
+            <button onClick={() => setCurrentPage('menu')} className="flex items-center gap-2 text-[#1e3a5f] dark:text-blue-400 font-semibold hover:gap-3 transition-all">
               Explore Full Menu <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -120,8 +120,8 @@ export const RestaurantPage: React.FC<RestaurantPageProps> = ({ setCurrentPage }
             />
             <div className="absolute -bottom-4 -left-4 bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-luxury">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center">
-                  <ChefHat className="w-5 h-5 text-amber-600" />
+                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                  <ChefHat className="w-5 h-5 text-[#1e3a5f] dark:text-blue-400" />
                 </div>
                 <div>
                   <p className="font-bold text-gray-900 dark:text-white text-sm">Chef Antoine Dupont</p>
@@ -137,7 +137,7 @@ export const RestaurantPage: React.FC<RestaurantPageProps> = ({ setCurrentPage }
       <section className="py-16 bg-gray-50 dark:bg-gray-800/50 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10">
-            <p className="text-amber-600 font-semibold text-sm uppercase tracking-widest mb-2">Culinary Icons</p>
+            <p className="text-[#1e3a5f] dark:text-blue-400 font-semibold text-sm uppercase tracking-widest mb-2">Culinary Icons</p>
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white font-serif">Signature Dishes</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -155,7 +155,7 @@ export const RestaurantPage: React.FC<RestaurantPageProps> = ({ setCurrentPage }
                   <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-2">{item.description}</p>
                   <div className="flex gap-1 mt-2 flex-wrap">
                     {item.tags.slice(0, 2).map(tag => (
-                      <span key={tag} className="text-xs px-2 py-0.5 bg-amber-100 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 rounded-full">{tag}</span>
+                      <span key={tag} className="text-xs px-2 py-0.5 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full">{tag}</span>
                     ))}
                   </div>
                 </div>
@@ -169,7 +169,7 @@ export const RestaurantPage: React.FC<RestaurantPageProps> = ({ setCurrentPage }
       <section className="py-16 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10">
-            <p className="text-amber-600 font-semibold text-sm uppercase tracking-widest mb-2">Visual Story</p>
+            <p className="text-[#1e3a5f] dark:text-blue-400 font-semibold text-sm uppercase tracking-widest mb-2">Visual Story</p>
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white font-serif">Gallery</h2>
           </div>
           <div className="grid grid-cols-3 gap-3">
@@ -188,7 +188,7 @@ export const RestaurantPage: React.FC<RestaurantPageProps> = ({ setCurrentPage }
           <h2 className="text-4xl font-bold text-white font-serif mb-4">Join Us This Evening</h2>
           <p className="text-white/80 text-lg mb-8">Tables are limited. Reserve yours before they're gone.</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <button onClick={() => setShowReserveModal(true)} className="px-10 py-4 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-bold text-lg transition-all hover:scale-105">
+            <button onClick={() => setShowReserveModal(true)} className="px-10 py-4 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-xl font-bold text-lg transition-all hover:scale-105 border border-blue-400/30">
               Reserve Now
             </button>
             <a href={`tel:${config.phone}`} className="flex items-center justify-center gap-2 px-10 py-4 bg-white/15 border border-white/30 text-white rounded-xl font-semibold hover:bg-white/25 transition-all">
@@ -259,7 +259,7 @@ export const RestaurantPage: React.FC<RestaurantPageProps> = ({ setCurrentPage }
             <button
               onClick={handleReserve}
               disabled={!form.name || !form.email || !form.date || !form.time}
-              className="flex-1 py-3 bg-amber-500 hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl font-bold transition-colors"
+              className="flex-1 py-3 bg-[#1e3a5f] hover:bg-[#2b5182] disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl font-bold transition-colors shadow-sm"
             >
               Confirm Reservation
             </button>

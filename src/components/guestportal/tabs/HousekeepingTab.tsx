@@ -178,7 +178,7 @@ export const HousekeepingTab: React.FC<HousekeepingTabProps> = ({ roomNumber, on
                       req.status === 'Completed'
                         ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300'
                         : req.status === 'In Progress'
-                        ? 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300'
+                        ? 'bg-blue-100 text-[#1e3a5f] dark:bg-blue-900/40 dark:text-blue-300'
                         : req.status === 'Cancelled'
                         ? 'bg-red-100 text-red-800'
                         : 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/40 text-indigo-300'

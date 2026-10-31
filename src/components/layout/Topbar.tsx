@@ -61,7 +61,7 @@ export const Topbar: React.FC = () => {
         <div className="flex items-center gap-1 flex-1 justify-center max-w-md">
           <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg p-1 gap-0.5">
             <div className="hidden sm:flex items-center gap-1 text-xs text-gray-400 px-1.5 font-medium">
-              <Zap className="w-3 h-3 text-amber-500" />
+              <Zap className="w-3 h-3 text-blue-500" />
               <span>Demo:</span>
             </div>
             {modeOptions.map(opt => (
@@ -159,7 +159,7 @@ export const Topbar: React.FC = () => {
                   {[
                     { title: 'Room 302 checked in', desc: 'Marcus Adeyemi arrived', time: '2m ago', dot: 'bg-emerald-500' },
                     { title: 'New booking confirmed', desc: 'LXP-2026-007 — Presidential Suite', time: '35m ago', dot: 'bg-blue-500' },
-                    { title: 'Maintenance alert', desc: 'Room 401 — AC unit requires service', time: '1hr ago', dot: 'bg-amber-500' },
+                    { title: 'Maintenance alert', desc: 'Room 401 — AC unit requires service', time: '1hr ago', dot: 'bg-blue-500' },
                     { title: 'Low inventory warning', desc: 'Wagyu Beef A4 — Only 12kg remaining', time: '2hr ago', dot: 'bg-red-500' },
                     { title: 'Guest request', desc: 'Room 201 — Extra towels requested', time: '3hr ago', dot: 'bg-purple-500' },
                   ].map((n, i) => (

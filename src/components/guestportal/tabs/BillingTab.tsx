@@ -438,7 +438,7 @@ Merchant ID:        LXP-MERCHANT-01
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1">
+              <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 flex items-center gap-1">
                 <Receipt className="w-3.5 h-3.5" />
                 <span>Guest Folio & Billing</span>
               </span>
@@ -461,12 +461,12 @@ Merchant ID:        LXP-MERCHANT-01
                 Outstanding Balance
               </span>
               <div className="flex items-baseline gap-2 mt-1">
-                <span className={`text-3xl font-extrabold ${netOutstandingBalance > 0 ? 'text-amber-400' : 'text-emerald-400'}`}>
+                <span className={`text-3xl font-extrabold ${netOutstandingBalance > 0 ? 'text-blue-400' : 'text-emerald-400'}`}>
                   ${netOutstandingBalance.toFixed(2)}
                 </span>
                 <span className="text-xs text-gray-400">USD</span>
               </div>
-              <span className={`inline-block text-[11px] font-bold mt-1 px-2 py-0.5 rounded-full ${netOutstandingBalance === 0 ? 'bg-emerald-500/20 text-emerald-300' : 'bg-amber-500/20 text-amber-300'}`}>
+              <span className={`inline-block text-[11px] font-bold mt-1 px-2 py-0.5 rounded-full ${netOutstandingBalance === 0 ? 'bg-emerald-500/20 text-emerald-300' : 'bg-blue-500/20 text-blue-300'}`}>
                 {netOutstandingBalance === 0 ? '✓ Paid in Full' : 'Settlement Required'}
               </span>
             </div>
@@ -476,7 +476,7 @@ Merchant ID:        LXP-MERCHANT-01
                 <button
                   type="button"
                   onClick={() => setSubTab('pay')}
-                  className="px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-md transition-all hover:scale-[1.02]"
+                  className="px-4 py-2.5 bg-[#1e3a5f] hover:bg-[#2b5182] text-white font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-md transition-all hover:scale-[1.02] border border-blue-400/30"
                 >
                   <CreditCard className="w-3.5 h-3.5" />
                   <span>Pay Balance Now</span>
@@ -534,7 +534,7 @@ Merchant ID:        LXP-MERCHANT-01
               : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
           }`}
         >
-          <Receipt className="w-3.5 h-3.5 text-amber-500" />
+          <Receipt className="w-3.5 h-3.5 text-blue-500" />
           <span>Folio & Charges ({charges.length})</span>
         </button>
 
@@ -550,7 +550,7 @@ Merchant ID:        LXP-MERCHANT-01
           <CreditCard className="w-3.5 h-3.5 text-emerald-500" />
           <span>Make a Payment</span>
           {netOutstandingBalance > 0 && (
-            <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-amber-500 text-white font-bold">
+            <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-[#1e3a5f] text-white font-bold">
               ${netOutstandingBalance.toFixed(0)}
             </span>
           )}
@@ -682,7 +682,7 @@ Merchant ID:        LXP-MERCHANT-01
                         <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold ${
                           charge.status === 'Finalized'
                             ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300'
-                            : 'bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300'
+                            : 'bg-blue-100 dark:bg-blue-900/30 text-[#1e3a5f] dark:text-blue-300'
                         }`}>
                           {charge.status === 'Finalized' ? '✓ Finalized' : '⏳ Pending Audit'}
                         </span>
@@ -706,7 +706,7 @@ Merchant ID:        LXP-MERCHANT-01
               </div>
               <div className="flex items-center gap-4">
                 <span className="text-gray-500">Net Due:</span>
-                <span className="text-base font-extrabold text-amber-600 dark:text-amber-400 font-mono">
+                <span className="text-base font-extrabold text-[#1e3a5f] dark:text-blue-400 font-mono">
                   ${netOutstandingBalance.toFixed(2)} USD
                 </span>
               </div>
@@ -724,7 +724,7 @@ Merchant ID:        LXP-MERCHANT-01
           <div className="lg:col-span-2 card p-6 space-y-6">
             <div className="border-b border-gray-100 dark:border-gray-700 pb-4">
               <h2 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                <CreditCard className="w-5 h-5 text-amber-500" />
+                <CreditCard className="w-5 h-5 text-[#1e3a5f] dark:text-blue-400" />
                 <span>Settle Folio Balance</span>
               </h2>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
@@ -744,7 +744,7 @@ Merchant ID:        LXP-MERCHANT-01
                     onClick={() => setPayAmountType('full')}
                     className={`p-3.5 rounded-xl border-2 text-left transition-all ${
                       payAmountType === 'full'
-                        ? 'border-amber-500 bg-amber-50/50 dark:bg-amber-900/20 shadow-xs'
+                        ? 'border-[#1e3a5f] bg-blue-50/50 dark:bg-blue-900/20 shadow-xs'
                         : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
                     }`}
                   >
@@ -759,7 +759,7 @@ Merchant ID:        LXP-MERCHANT-01
                     onClick={() => setPayAmountType('custom')}
                     className={`p-3.5 rounded-xl border-2 text-left transition-all ${
                       payAmountType === 'custom'
-                        ? 'border-amber-500 bg-amber-50/50 dark:bg-amber-900/20 shadow-xs'
+                        ? 'border-[#1e3a5f] bg-blue-50/50 dark:bg-blue-900/20 shadow-xs'
                         : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
                     }`}
                   >
@@ -811,7 +811,7 @@ Merchant ID:        LXP-MERCHANT-01
                       key={method.id}
                       className={`flex items-center justify-between p-3.5 rounded-xl border-2 cursor-pointer transition-all ${
                         selectedPayMethod === method.id
-                          ? 'border-amber-500 bg-amber-50/40 dark:bg-amber-900/20'
+                          ? 'border-[#1e3a5f] bg-blue-50/40 dark:bg-blue-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
                       }`}
                     >
@@ -828,7 +828,7 @@ Merchant ID:        LXP-MERCHANT-01
                         value={method.id}
                         checked={selectedPayMethod === method.id}
                         onChange={() => setSelectedPayMethod(method.id as any)}
-                        className="text-amber-600 focus:ring-amber-500 h-4 w-4"
+                        className="text-[#1e3a5f] focus:ring-[#1e3a5f] h-4 w-4"
                       />
                     </label>
                   ))}
@@ -839,7 +839,7 @@ Merchant ID:        LXP-MERCHANT-01
               <button
                 type="submit"
                 disabled={isProcessingPayment || (payAmountType === 'full' && netOutstandingBalance <= 0)}
-                className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 disabled:opacity-50 text-white rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2"
+                className="w-full py-3.5 bg-[#1e3a5f] hover:bg-[#2b5182] disabled:opacity-50 text-white rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 border border-blue-400/30"
               >
                 {isProcessingPayment ? (
                   <>
@@ -861,25 +861,25 @@ Merchant ID:        LXP-MERCHANT-01
           {/* Settlement Policy & Business Rules Box (1 col) */}
           <div className="space-y-4">
             <div className="card p-5 bg-gradient-to-br from-slate-900 to-gray-900 text-white border-slate-700">
-              <h3 className="font-bold text-sm mb-3 flex items-center gap-2 text-amber-400">
+              <h3 className="font-bold text-sm mb-3 flex items-center gap-2 text-blue-400">
                 <ShieldCheck className="w-4 h-4" />
                 <span>Hotel Settlement Policy</span>
               </h3>
               <ul className="text-xs text-gray-300 space-y-2.5 leading-relaxed">
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-400 font-bold">1.</span>
+                  <span className="text-blue-400 font-bold">1.</span>
                   <span><strong>Instant Folio Reduction:</strong> Only confirmed successful authorizations decrease your outstanding ledger.</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-400 font-bold">2.</span>
+                  <span className="text-blue-400 font-bold">2.</span>
                   <span><strong>Failed Payments:</strong> Declined or pending authorizations are isolated and not treated as settled funds.</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-400 font-bold">3.</span>
+                  <span className="text-blue-400 font-bold">3.</span>
                   <span><strong>Digital Checkout:</strong> Express digital departure requires a zero outstanding balance before room keys are revoked.</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-400 font-bold">4.</span>
+                  <span className="text-blue-400 font-bold">4.</span>
                   <span><strong>Verifiable Receipts:</strong> Each transaction generates a digitally signed receipt number for expense filing.</span>
                 </li>
               </ul>
@@ -950,7 +950,7 @@ Merchant ID:        LXP-MERCHANT-01
                             ? 'bg-rose-100 dark:bg-rose-900/30 text-rose-800 dark:text-rose-300'
                             : txn.status === 'Refunded'
                             ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300'
-                            : 'bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300'
+                            : 'bg-blue-100 dark:bg-blue-900/30 text-[#1e3a5f] dark:text-blue-300'
                         }`}>
                           {txn.status === 'Successful' && '✓ Successful'}
                           {txn.status === 'Failed' && '✕ Failed'}
@@ -1042,7 +1042,7 @@ Merchant ID:        LXP-MERCHANT-01
                       <span className="font-mono font-bold text-sm text-gray-900 dark:text-white">
                         ${disp.disputedAmount.toFixed(2)}
                       </span>
-                      <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300">
+                      <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-100 dark:bg-blue-900/30 text-[#1e3a5f] dark:text-blue-300">
                         {disp.status}
                       </span>
                     </div>
@@ -1193,7 +1193,7 @@ Merchant ID:        LXP-MERCHANT-01
               <button
                 type="button"
                 onClick={() => handleDownloadReceipt(paymentSuccessModal)}
-                className="flex-1 py-2.5 bg-gray-900 hover:bg-black dark:bg-amber-500 dark:hover:bg-amber-600 text-white rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-1.5"
+                className="flex-1 py-2.5 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-1.5"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Download Receipt</span>

@@ -64,7 +64,7 @@ export const PublicNav: React.FC<PublicNavProps> = ({ currentPage, setCurrentPag
                     currentPage === key
                       ? 'bg-white/20 text-white'
                       : isPortal && guestLoggedIn
-                      ? 'bg-amber-500/20 text-amber-200 hover:bg-amber-500/30 border border-amber-400/30'
+                      ? 'bg-blue-500/20 text-blue-200 hover:bg-blue-500/30 border border-blue-400/30'
                       : 'text-white/75 hover:text-white hover:bg-white/10'
                   }`}
                 >
@@ -94,7 +94,7 @@ export const PublicNav: React.FC<PublicNavProps> = ({ currentPage, setCurrentPag
             {propertyMode !== 'restaurant' && (
               <button
                 onClick={() => setCurrentPage('book-now')}
-                className="px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white rounded-lg text-sm font-semibold transition-colors shadow-sm"
+                className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-semibold transition-colors shadow-sm border border-blue-400/30"
               >
                 Book Now
               </button>
@@ -103,7 +103,7 @@ export const PublicNav: React.FC<PublicNavProps> = ({ currentPage, setCurrentPag
             {propertyMode === 'restaurant' && (
               <button
                 onClick={() => setCurrentPage('reservations')}
-                className="px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white rounded-lg text-sm font-semibold transition-colors shadow-sm"
+                className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-semibold transition-colors shadow-sm border border-blue-400/30"
               >
                 Reserve
               </button>

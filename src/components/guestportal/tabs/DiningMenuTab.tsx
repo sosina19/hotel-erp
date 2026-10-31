@@ -3,7 +3,7 @@ import {
   Utensils, Search, Plus, Minus, ShoppingBag, Clock, CheckCircle2,
   AlertTriangle, Filter, Sparkles, X, ChevronRight, Check, Heart,
   Flame, Leaf, ShieldAlert, Award, Coffee, Wine, Package, ThumbsUp,
-  DollarSign, ArrowRight, BedDouble, MapPin
+  DollarSign, ArrowRight
 } from 'lucide-react';
 import type { DiningOrderItem, DiningOrderItemAddOn, GuestDiningOrder } from '../types';
 import { menuItems } from '../../../data/mockData';
@@ -19,17 +19,6 @@ const RESTAURANTS = [
   { id: 'grand-dining', name: 'The Grand Dining Room', cuisine: 'Contemporary Fine Dining', hours: '18:00 – 22:30' },
   { id: 'letoile', name: 'L’Étoile Bistro & Wine Bar', cuisine: 'French Bistro & Grill', hours: '11:30 – 23:00' },
   { id: 'skyline', name: 'Skyline Terrace Lounge', cuisine: 'Tapas, Sushi & Cocktails', hours: '16:00 – 01:00' },
-];
-
-// Open Restaurant Dining Tables
-const OPEN_TABLES = [
-  { id: 'Table 1', name: 'Table 1 – Main Fine Dining Room', capacity: '2-4 Guests' },
-  { id: 'Table 2', name: 'Table 2 – Garden Terrace Patio', capacity: '2-4 Guests' },
-  { id: 'Table 3', name: 'Table 3 – Panoramic Sea View Window', capacity: '2 Guests (Romantic)' },
-  { id: 'Table 4', name: 'Table 4 – Rooftop Infinity Pool Deck', capacity: '4-6 Guests' },
-  { id: 'Table 5', name: 'Table 5 – Skyline Lounge & Wine Bar', capacity: '2-4 Guests' },
-  { id: 'Cabana 1', name: 'Cabana 1 – VIP Poolside Cabana', capacity: 'Up to 6 Guests' },
-  { id: 'Other', name: 'Other / Enter Specific Table #', capacity: 'Any Table' },
 ];
 
 // Available sides and extras ("Do you need anything else?")
@@ -61,26 +50,13 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [dietaryFilter, setDietaryFilter] = useState<string>('all');
 
-  // Serving Location: To the Room vs. Select Open Table
-  const isTableInitial = roomNumber?.toLowerCase().includes('table') || roomNumber?.toLowerCase().includes('cabana');
-  const [servingLocationType, setServingLocationType] = useState<'room' | 'table'>(
-    isTableInitial ? 'table' : 'room'
-  );
-  const [destinationRoomNumber, setDestinationRoomNumber] = useState<string>(
-    isTableInitial ? '101' : (roomNumber || '101')
-  );
-  const [destinationTableNumber, setDestinationTableNumber] = useState<string>(
-    isTableInitial ? roomNumber : 'Table 1 – Main Fine Dining Room'
-  );
-  const [customTableNumber, setCustomTableNumber] = useState<string>('');
-
   // Cart Tray
   const [cart, setCart] = useState<DiningOrderItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [deliveryType, setDeliveryType] = useState<'Room Delivery' | 'Restaurant Pickup' | 'Open Table Dine-in'>('Room Delivery');
+  const [deliveryType, setDeliveryType] = useState<'Room Delivery' | 'Restaurant Pickup'>('Room Delivery');
   const [deliveryTime, setDeliveryTime] = useState('Immediate (~20-25 min)');
   const [deliveryNotes, setDeliveryNotes] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState<'Charge to Room Folio' | 'Credit Card' | 'Pay at Table'>('Charge to Room Folio');
+  const [paymentMethod, setPaymentMethod] = useState<'Charge to Room Folio' | 'Credit Card'>('Charge to Room Folio');
 
   // Interactive Item Customization Modal ("Ask Amount & Other Things")
   const [customizingItem, setCustomizingItem] = useState<any | null>(null);
@@ -256,7 +232,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const cartSubtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const cartTax = cartSubtotal * 0.10;
-  const cartDeliveryFee = servingLocationType === 'room' ? 5.00 : 0.00;
+  const cartDeliveryFee = deliveryType === 'Room Delivery' ? 5.00 : 0.00;
   const cartTotal = cartSubtotal + cartTax + cartDeliveryFee;
 
   const handleUpdateCartQty = (id: string, delta: number) => {
@@ -272,10 +248,6 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
     e.preventDefault();
     if (cart.length === 0) return;
 
-    const targetLocationDisplay = servingLocationType === 'room'
-      ? `Room #${destinationRoomNumber.trim() || '101'}`
-      : (destinationTableNumber.includes('Other') && customTableNumber ? customTableNumber.trim() : destinationTableNumber.split('–')[0].trim());
-
     const newOrder: GuestDiningOrder = {
       id: `ORD-${Math.floor(1000 + Math.random() * 9000)}`,
       orderTime: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
@@ -285,27 +257,26 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
       tax: cartTax,
       deliveryFee: cartDeliveryFee,
       total: cartTotal,
-      deliveryType: servingLocationType === 'room' ? 'Room Delivery' : 'Open Table Dine-in',
-      roomNumber: targetLocationDisplay,
-      tableNumber: servingLocationType === 'table' ? targetLocationDisplay : undefined,
+      deliveryType,
+      roomNumber,
       deliveryTime,
-      specialInstructions: deliveryNotes.trim() || (servingLocationType === 'room' ? 'Knock gently upon delivery' : 'Serve to table when all dishes are ready'),
+      specialInstructions: deliveryNotes.trim() || 'Knock gently upon delivery',
       paymentMethod,
       status: 'Pending',
-      assignedServer: servingLocationType === 'room' ? 'Executive Room Cart Dispatch' : 'Head Waiter & Table Runner',
-      estimatedMinutes: servingLocationType === 'room' ? 25 : 18,
+      assignedServer: 'Executive Kitchen Dispatch',
+      estimatedMinutes: 25,
     };
 
     setOrders(prev => [newOrder, ...prev]);
 
     if (paymentMethod === 'Charge to Room Folio') {
-      onChargeFolio(cartTotal, `${servingLocationType === 'room' ? 'In-Room Dining' : 'Table Dining'} (${newOrder.id} · ${targetLocationDisplay})`);
+      onChargeFolio(cartTotal, `In-Room Dining (${newOrder.id})`);
     }
 
     onAddToast({
       type: 'success',
       title: 'Order Transmitted to Kitchen',
-      message: `Your food order (${newOrder.id}) is placed for ${targetLocationDisplay}! Tracking live.`,
+      message: `Your food order (${newOrder.id}) is now in preparation. Tracking live!`,
     });
 
     setCart([]);
@@ -658,18 +629,8 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                           <span className="text-xs font-bold text-gray-900 dark:text-white">
                             {order.restaurantName}
                           </span>
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 flex items-center gap-1">
-                            {order.deliveryType === 'Room Delivery' ? (
-                              <>
-                                <BedDouble className="w-3 h-3 text-amber-600" />
-                                <span>{order.roomNumber}</span>
-                              </>
-                            ) : (
-                              <>
-                                <Utensils className="w-3 h-3 text-amber-600" />
-                                <span>{order.roomNumber}</span>
-                              </>
-                            )}
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300">
+                            {order.deliveryType}
                           </span>
                         </div>
                         <p className="text-xs text-gray-500 mt-0.5">
@@ -817,7 +778,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                     {order.items.map(i => `${i.quantity}x ${i.name}`).join(', ')}
                   </p>
                   <p className="text-[11px] text-gray-400">
-                    {order.restaurantName} · {order.roomNumber} · {order.paymentMethod}
+                    {order.restaurantName} · {order.paymentMethod}
                   </p>
                 </div>
 
@@ -894,122 +855,15 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
               </div>
             </div>
 
-            {/* 1. CHOOSE SERVICE DESTINATION: TO THE ROOM OR OPEN TABLE */}
-            <div className="p-4 bg-gray-50 dark:bg-gray-800/70 rounded-2xl border border-gray-200 dark:border-gray-700 space-y-3">
-              <div>
-                <label className="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-wider block">
-                  1. Choose Serving Location: To the Room or Open Table
-                </label>
-                <span className="text-[11px] text-gray-500 dark:text-gray-400">
-                  Where would you like this order served?
-                </span>
-              </div>
-
-              {/* Destination Radio Cards */}
-              <div className="grid grid-cols-2 gap-2.5">
-                <button
-                  type="button"
-                  onClick={() => setServingLocationType('room')}
-                  className={`p-3 rounded-xl border-2 text-left transition-all flex flex-col justify-between ${
-                    servingLocationType === 'room'
-                      ? 'border-amber-500 bg-amber-50/80 dark:bg-amber-900/30 text-amber-900 dark:text-amber-100 shadow-xs'
-                      : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-gray-300'
-                  }`}
-                >
-                  <div className="flex items-center gap-2 mb-1">
-                    <BedDouble className="w-4 h-4 text-amber-500" />
-                    <span className="text-xs font-bold">To the Room</span>
-                  </div>
-                  <span className="text-[10px] text-gray-500 dark:text-gray-400">
-                    In-Room Private Dining
-                  </span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setServingLocationType('table')}
-                  className={`p-3 rounded-xl border-2 text-left transition-all flex flex-col justify-between ${
-                    servingLocationType === 'table'
-                      ? 'border-amber-500 bg-amber-50/80 dark:bg-amber-900/30 text-amber-900 dark:text-amber-100 shadow-xs'
-                      : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-gray-300'
-                  }`}
-                >
-                  <div className="flex items-center gap-2 mb-1">
-                    <Utensils className="w-4 h-4 text-amber-500" />
-                    <span className="text-xs font-bold">Select Open Table</span>
-                  </div>
-                  <span className="text-[10px] text-gray-500 dark:text-gray-400">
-                    Restaurant Dine-in Table
-                  </span>
-                </button>
-              </div>
-
-              {/* Conditional Input: Room Number vs Table Selector */}
-              {servingLocationType === 'room' ? (
-                <div className="pt-2 border-t border-gray-200/70 dark:border-gray-700/70 space-y-1.5">
-                  <label className="block text-[11px] font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
-                    Enter Room Number for In-Room Delivery
-                  </label>
-                  <div className="flex items-center gap-2">
-                    <div className="relative flex-1">
-                      <BedDouble className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                      <input
-                        type="text"
-                        value={destinationRoomNumber}
-                        onChange={e => setDestinationRoomNumber(e.target.value)}
-                        placeholder="Enter room number (e.g. 101, 204)"
-                        className="input-field pl-9 text-xs py-2 font-bold font-mono"
-                      />
-                    </div>
-                    <span className="text-[11px] px-2.5 py-1 bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 rounded-lg font-bold whitespace-nowrap">
-                      Room #{destinationRoomNumber || '101'}
-                    </span>
-                  </div>
-                  <p className="text-[10px] text-gray-400 italic">
-                    Food will be delivered hot to Room #{destinationRoomNumber || '101'}.
-                  </p>
-                </div>
-              ) : (
-                <div className="pt-2 border-t border-gray-200/70 dark:border-gray-700/70 space-y-1.5">
-                  <label className="block text-[11px] font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
-                    Select Open Restaurant Table
-                  </label>
-                  <select
-                    value={destinationTableNumber}
-                    onChange={e => setDestinationTableNumber(e.target.value)}
-                    className="input-field text-xs py-2 font-semibold"
-                  >
-                    {OPEN_TABLES.map(tab => (
-                      <option key={tab.id} value={tab.name}>
-                        {tab.name} · ({tab.capacity})
-                      </option>
-                    ))}
-                  </select>
-                  {destinationTableNumber.includes('Other') && (
-                    <input
-                      type="text"
-                      value={customTableNumber}
-                      onChange={e => setCustomTableNumber(e.target.value)}
-                      placeholder="Enter table number (e.g. Table 14)"
-                      className="input-field text-xs py-2 mt-1.5"
-                    />
-                  )}
-                  <p className="text-[10px] text-gray-400 italic">
-                    Our waitstaff will bring this dish directly to your seated table.
-                  </p>
-                </div>
-              )}
-            </div>
-
-            {/* 2. HOW MUCH THEY WANT TO ORDER / PORTIONS */}
-            <div className="p-4 bg-amber-50/60 dark:bg-amber-950/20 rounded-2xl border border-amber-200/80 dark:border-amber-900/40 space-y-3">
+            {/* 1. ASK THE AMOUNT / QUANTITY */}
+            <div className="p-4 bg-amber-50/60 dark:bg-amber-950/20 rounded-2xl border border-amber-200/80 dark:border-amber-900/40 space-y-2">
               <div className="flex items-center justify-between">
                 <div>
                   <label className="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-wider block">
-                    2. How Much Would You Like to Order? (Quantity / Portions)
+                    1. Select Quantity / Portions
                   </label>
                   <span className="text-[11px] text-gray-500 dark:text-gray-400">
-                    Select number of servings for your party
+                    How many servings would you like prepared?
                   </span>
                 </div>
 
@@ -1017,8 +871,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                   <button
                     type="button"
                     onClick={() => setItemQuantity(Math.max(1, itemQuantity - 1))}
-                    disabled={itemQuantity <= 1}
-                    className="w-8 h-8 rounded-lg bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 disabled:opacity-40 flex items-center justify-center font-bold text-gray-700 dark:text-gray-200 transition-colors"
+                    className="w-8 h-8 rounded-lg bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 flex items-center justify-center font-bold text-gray-700 dark:text-gray-200 transition-colors"
                   >
                     <Minus className="w-4 h-4" />
                   </button>
@@ -1027,35 +880,11 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                   </span>
                   <button
                     type="button"
-                    onClick={() => setItemQuantity(Math.min(20, itemQuantity + 1))}
+                    onClick={() => setItemQuantity(Math.min(10, itemQuantity + 1))}
                     className="w-8 h-8 rounded-lg bg-amber-500 hover:bg-amber-600 flex items-center justify-center font-bold text-white transition-colors"
                   >
                     <Plus className="w-4 h-4" />
                   </button>
-                </div>
-              </div>
-
-              {/* Quick Portions Selector Pills */}
-              <div className="flex items-center gap-1.5 pt-2 border-t border-amber-200/60 dark:border-amber-900/50">
-                <span className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mr-1">Quick:</span>
-                {[1, 2, 3, 4, 5].map(qty => (
-                  <button
-                    key={qty}
-                    type="button"
-                    onClick={() => setItemQuantity(qty)}
-                    className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
-                      itemQuantity === qty
-                        ? 'bg-amber-500 text-white shadow-xs'
-                        : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-amber-200 dark:border-amber-800 hover:bg-amber-100'
-                    }`}
-                  >
-                    {qty}x
-                  </button>
-                ))}
-                <div className="ml-auto text-right">
-                  <span className="text-xs font-mono font-bold text-amber-700 dark:text-amber-300">
-                    Total: ${customizedItemTotalPrice.toFixed(2)}
-                  </span>
                 </div>
               </div>
             </div>
@@ -1272,18 +1101,11 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
               <button
                 type="button"
                 onClick={handleAddCustomizedToCart}
-                className="flex-1 py-3 px-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-xl text-xs font-bold shadow-md transition-all flex flex-col items-center justify-center gap-0.5"
+                className="flex-1 py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-xl text-xs font-bold shadow-md transition-all flex items-center justify-center gap-2"
               >
-                <div className="flex items-center gap-2">
-                  <ShoppingBag className="w-4 h-4" />
-                  <span>
-                    Add {itemQuantity}x to Tray • ${customizedItemTotalPrice.toFixed(2)} USD
-                  </span>
-                </div>
-                <span className="text-[10px] opacity-90 font-normal">
-                  {servingLocationType === 'room'
-                    ? `Delivery to Room #${destinationRoomNumber || '101'}`
-                    : `Serve at ${destinationTableNumber.split('–')[0].trim()}`}
+                <ShoppingBag className="w-4 h-4" />
+                <span>
+                  Add {itemQuantity}x to Tray • ${customizedItemTotalPrice.toFixed(2)} USD
                 </span>
               </button>
 
@@ -1428,93 +1250,22 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                 </div>
               </div>
 
-              {/* Delivery / Table Configuration */}
-              <div className="p-3.5 bg-gray-50 dark:bg-gray-800/80 rounded-2xl border border-gray-200 dark:border-gray-700 space-y-3">
-                <div className="flex items-center justify-between">
-                  <label className="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-wider block">
-                    Choose Serving Location
-                  </label>
-                  <span className="text-[10px] text-gray-400">
-                    {servingLocationType === 'room' ? 'In-Room Dining' : 'Restaurant Dine-In'}
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setServingLocationType('room')}
-                    className={`py-2 px-3 rounded-xl border-2 text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
-                      servingLocationType === 'room'
-                        ? 'border-amber-500 bg-amber-50 dark:bg-amber-900/30 text-amber-900 dark:text-amber-100 shadow-xs'
-                        : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-                    }`}
-                  >
-                    <BedDouble className="w-4 h-4 text-amber-500" />
-                    <span>To the Room</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setServingLocationType('table')}
-                    className={`py-2 px-3 rounded-xl border-2 text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
-                      servingLocationType === 'table'
-                        ? 'border-amber-500 bg-amber-50 dark:bg-amber-900/30 text-amber-900 dark:text-amber-100 shadow-xs'
-                        : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-                    }`}
-                  >
-                    <Utensils className="w-4 h-4 text-amber-500" />
-                    <span>Select Open Table</span>
-                  </button>
-                </div>
-
-                {servingLocationType === 'room' ? (
-                  <div className="space-y-1">
-                    <label className="block text-[11px] font-semibold text-gray-700 dark:text-gray-300">
-                      Enter Room Number for Delivery:
-                    </label>
-                    <div className="relative">
-                      <BedDouble className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                      <input
-                        type="text"
-                        value={destinationRoomNumber}
-                        onChange={e => setDestinationRoomNumber(e.target.value)}
-                        placeholder="e.g. 101, 204"
-                        className="input-field pl-9 text-xs py-2 font-bold font-mono"
-                      />
-                    </div>
-                  </div>
-                ) : (
-                  <div className="space-y-1">
-                    <label className="block text-[11px] font-semibold text-gray-700 dark:text-gray-300">
-                      Select Open Restaurant Table:
-                    </label>
-                    <select
-                      value={destinationTableNumber}
-                      onChange={e => setDestinationTableNumber(e.target.value)}
-                      className="input-field text-xs py-2"
-                    >
-                      {OPEN_TABLES.map(tab => (
-                        <option key={tab.id} value={tab.name}>
-                          {tab.name}
-                        </option>
-                      ))}
-                    </select>
-                    {destinationTableNumber.includes('Other') && (
-                      <input
-                        type="text"
-                        value={customTableNumber}
-                        onChange={e => setCustomTableNumber(e.target.value)}
-                        placeholder="Type table # (e.g. Table 14)"
-                        className="input-field text-xs py-2 mt-1"
-                      />
-                    )}
-                  </div>
-                )}
-              </div>
-
-              {/* Delivery Timing & Payment */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {/* Delivery Configuration */}
+              <div className="grid grid-cols-2 gap-3 pt-2">
                 <div>
-                  <label className="block text-xs font-semibold mb-1">Serving Timing</label>
+                  <label className="block text-xs font-semibold mb-1">Delivery Location</label>
+                  <select
+                    value={deliveryType}
+                    onChange={e => setDeliveryType(e.target.value as any)}
+                    className="input-field text-xs py-2"
+                  >
+                    <option value="Room Delivery">Room Delivery (Room #{roomNumber})</option>
+                    <option value="Restaurant Pickup">Pickup at Restaurant Host Desk</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold mb-1">Delivery Timing</label>
                   <select
                     value={deliveryTime}
                     onChange={e => setDeliveryTime(e.target.value)}
@@ -1526,38 +1277,29 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                     <option value="Scheduled for 20:30">Scheduled for 20:30</option>
                   </select>
                 </div>
-
-                <div>
-                  <label className="block text-xs font-semibold mb-1">Payment Method</label>
-                  <select
-                    value={paymentMethod}
-                    onChange={e => setPaymentMethod(e.target.value as any)}
-                    className="input-field text-xs py-2"
-                  >
-                    {servingLocationType === 'room' ? (
-                      <>
-                        <option value="Charge to Room Folio">Charge to Room #{destinationRoomNumber || '101'} Folio</option>
-                        <option value="Credit Card">Card on File (Visa ending in 4242)</option>
-                      </>
-                    ) : (
-                      <>
-                        <option value="Charge to Room Folio">Charge to Room #{destinationRoomNumber || '101'} Folio</option>
-                        <option value="Pay at Table">Pay at Table (Cash / Card POS)</option>
-                      </>
-                    )}
-                  </select>
-                </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold mb-1">Special Placement / Server Instructions</label>
+                <label className="block text-xs font-semibold mb-1">Delivery & Placement Instructions</label>
                 <input
                   type="text"
                   value={deliveryNotes}
                   onChange={e => setDeliveryNotes(e.target.value)}
-                  placeholder={servingLocationType === 'room' ? 'e.g. Leave on balcony table, knock softly please...' : 'e.g. Serve when whole party arrives...'}
+                  placeholder="e.g. Leave on the balcony table, knock softly please..."
                   className="input-field text-xs py-2"
                 />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold mb-1">Payment Method</label>
+                <select
+                  value={paymentMethod}
+                  onChange={e => setPaymentMethod(e.target.value as any)}
+                  className="input-field text-xs py-2"
+                >
+                  <option value="Charge to Room Folio">Charge directly to Room #{roomNumber} Folio</option>
+                  <option value="Credit Card">Card on File (Visa ending in 4242)</option>
+                </select>
               </div>
 
               {/* Financial Totals */}
@@ -1571,8 +1313,8 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                   <span className="font-mono">${cartTax.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-gray-500">
-                  <span>{servingLocationType === 'room' ? 'In-Room Tray Delivery' : 'Table Service'}</span>
-                  <span className="font-mono">{cartDeliveryFee > 0 ? `$${cartDeliveryFee.toFixed(2)}` : 'Complimentary'}</span>
+                  <span>Tray Delivery Service</span>
+                  <span className="font-mono">${cartDeliveryFee.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between font-bold text-sm text-gray-900 dark:text-white pt-2 border-t border-gray-200 dark:border-gray-700">
                   <span>Total Amount</span>
@@ -1595,9 +1337,7 @@ export const DiningMenuTab: React.FC<DiningMenuTabProps> = ({
                   className="flex-1 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-xl text-xs font-bold shadow-md transition-all flex items-center justify-center gap-1.5"
                 >
                   <CheckCircle2 className="w-4 h-4" />
-                  <span>
-                    Confirm & Place Order ({servingLocationType === 'room' ? `Room #${destinationRoomNumber || '101'}` : destinationTableNumber.split('–')[0].trim()}) • ${cartTotal.toFixed(2)}
-                  </span>
+                  <span>Confirm & Place Order (${cartTotal.toFixed(2)})</span>
                 </button>
               </div>
             </>

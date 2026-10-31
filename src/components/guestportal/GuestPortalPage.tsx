@@ -34,18 +34,9 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
   const { setGuestLoggedIn, setGuestEmail, addToast, propertyMode, scannedRoom, scannedTarget, setCurrentView } = useApp();
   const config = propertyConfigs[propertyMode];
 
-  const [activeTab, setActiveTab] = useState<GuestPortalTab>(
-    (scannedTarget as GuestPortalTab) || 'dining'
-  );
+  const [activeTab, setActiveTab] = useState<GuestPortalTab>('overview');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
-
-  // Synchronize active tab if scanned target changes
-  useEffect(() => {
-    if (scannedTarget) {
-      setActiveTab(scannedTarget as GuestPortalTab);
-    }
-  }, [scannedTarget]);
 
   // Digital Mobile RFID Key state
   const [keyUnlocked, setKeyUnlocked] = useState(false);
@@ -248,7 +239,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
                 </div>
                 <div>
                   <p className="font-bold text-sm font-serif leading-tight">{config.name}</p>
-                  <span className="text-[10px] text-amber-300 font-bold uppercase tracking-wider">
+                  <span className="text-[10px] text-blue-300 font-bold uppercase tracking-wider">
                     Guest Services
                   </span>
                 </div>
@@ -268,12 +259,12 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
                 <img
                   src={stay.avatar}
                   alt={stay.name}
-                  className="w-10 h-10 rounded-full object-cover border border-amber-400/80"
+                  className="w-10 h-10 rounded-full object-cover border border-blue-400/80"
                 />
                 <div className="min-w-0 flex-1">
                   <p className="text-xs font-bold truncate leading-tight">{stay.name}</p>
                   <div className="flex items-center gap-1.5 mt-0.5">
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 font-bold">
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-400/20 text-blue-300 font-bold">
                       Room #{stay.room}
                     </span>
                     <span className="text-[10px] text-white/70">{stay.tier}</span>
@@ -289,7 +280,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
                 className={`w-full mt-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
                   keyUnlocked
                     ? 'bg-emerald-500 text-white'
-                    : 'bg-amber-500 hover:bg-amber-600 text-white shadow-xs'
+                    : 'bg-blue-600 hover:bg-blue-700 text-white shadow-xs'
                 }`}
               >
                 {isUnlockingKey ? (
@@ -357,7 +348,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
                 }}
                 className="w-full py-2 bg-white/10 hover:bg-white/20 rounded-xl text-xs font-semibold text-white/90 flex items-center justify-center gap-2 transition-colors border border-white/10"
               >
-                <ShieldCheck className="w-3.5 h-3.5 text-amber-300" />
+                <ShieldCheck className="w-3.5 h-3.5 text-blue-300" />
                 <span>Staff PMS Admin View</span>
               </button>
 
@@ -400,7 +391,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
           {!sidebarCollapsed && (
             <div className="min-w-0">
               <p className="text-white font-bold text-sm font-serif leading-tight truncate">{config.name}</p>
-              <span className="text-[10px] text-amber-300 font-bold uppercase tracking-wider block">
+              <span className="text-[10px] text-blue-300 font-bold uppercase tracking-wider block">
                 Resident Portal
               </span>
             </div>
@@ -413,12 +404,12 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
             <img
               src={stay.avatar}
               alt={stay.name}
-              className="w-9 h-9 rounded-full object-cover border border-amber-400/80 flex-shrink-0"
+              className="w-9 h-9 rounded-full object-cover border border-blue-400/80 flex-shrink-0"
             />
             <div className="min-w-0 flex-1">
               <p className="text-xs font-bold truncate leading-tight">{stay.name}</p>
               <div className="flex items-center gap-1.5 mt-0.5">
-                <span className="text-[10px] px-1.5 py-0.2 rounded bg-amber-400/20 text-amber-300 font-bold">
+                <span className="text-[10px] px-1.5 py-0.2 rounded bg-blue-500/20 text-blue-300 font-bold">
                   Room #{stay.room}
                 </span>
                 <span className="text-[10px] text-white/70">{stay.tier}</span>
@@ -430,7 +421,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
             <img
               src={stay.avatar}
               alt={stay.name}
-              className="w-8 h-8 rounded-full object-cover border border-amber-400/80"
+              className="w-8 h-8 rounded-full object-cover border border-blue-400/80"
               title={`${stay.name} · Room #${stay.room}`}
             />
           </div>
@@ -468,7 +459,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
                             <span
                               className={`px-1.5 py-0.2 rounded-full text-[9px] font-bold ${
                                 item.id === 'billing' && stay.balance > 0
-                                  ? 'bg-amber-400 text-gray-900 animate-pulse'
+                                  ? 'bg-blue-400 text-gray-900 animate-pulse'
                                   : 'bg-white/20 text-white'
                               }`}
                             >
@@ -490,7 +481,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
           {!sidebarCollapsed ? (
             <div className="bg-white/10 rounded-xl p-2.5 text-white border border-white/10 space-y-1.5">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-300 flex items-center gap-1">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-blue-300 flex items-center gap-1">
                   <KeyRound className="w-3 h-3" />
                   <span>Mobile Key</span>
                 </span>
@@ -506,7 +497,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
                 className={`w-full py-1.5 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
                   keyUnlocked
                     ? 'bg-emerald-500 text-white'
-                    : 'bg-amber-500 hover:bg-amber-600 text-white shadow-xs'
+                    : 'bg-blue-600 hover:bg-blue-700 text-white shadow-xs'
                 }`}
               >
                 {isUnlockingKey ? (
@@ -529,7 +520,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
               type="button"
               onClick={handleUnlockMobileKey}
               title="Unlock Room #101"
-              className="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center hover:bg-amber-600 transition-colors shadow-sm"
+              className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition-colors shadow-sm"
             >
               <KeyRound className="w-4 h-4" />
             </button>
@@ -556,7 +547,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
               <p className="text-xs font-bold text-gray-900 dark:text-white font-serif truncate leading-tight">
                 {config.name}
               </p>
-              <span className="text-[10px] text-amber-600 dark:text-amber-400 font-bold block truncate">
+              <span className="text-[10px] text-blue-600 dark:text-blue-400 font-bold block truncate">
                 {currentTabLabel}
               </span>
             </div>
@@ -564,8 +555,8 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
 
           <div className="flex items-center gap-1.5 flex-shrink-0">
             {/* Room Indicator Badge */}
-            <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 flex items-center gap-1 border border-amber-200 dark:border-amber-700">
-              <BedDouble className="w-3 h-3 text-amber-600 dark:text-amber-400" />
+            <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-blue-50 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 flex items-center gap-1 border border-blue-200 dark:border-blue-700">
+              <BedDouble className="w-3 h-3 text-blue-600 dark:text-blue-400" />
               <span>Room #{stay.room}</span>
             </span>
 
@@ -601,7 +592,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
               title="View folio breakdown and settle balance"
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-bold transition-all ${
                 stay.balance > 0
-                  ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-300 dark:border-amber-700 text-amber-800 dark:text-amber-300 hover:bg-amber-100'
+                  ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-300 dark:border-blue-700 text-blue-800 dark:text-blue-300 hover:bg-blue-100'
                   : 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-300 dark:border-emerald-700 text-emerald-800 dark:text-emerald-300'
               }`}
             >
@@ -762,7 +753,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
             onClick={() => setActiveTab('dining')}
             className={`flex flex-col items-center py-1 px-2.5 rounded-xl text-[10px] font-bold transition-all ${
               activeTab === 'dining'
-                ? 'text-amber-600 dark:text-amber-400 scale-105'
+                ? 'text-blue-600 dark:text-blue-400 scale-105'
                 : 'text-gray-500 dark:text-gray-400 hover:text-gray-700'
             }`}
           >
@@ -776,7 +767,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
             onClick={() => setActiveTab('services')}
             className={`flex flex-col items-center py-1 px-2.5 rounded-xl text-[10px] font-bold transition-all ${
               activeTab === 'services'
-                ? 'text-amber-600 dark:text-amber-400 scale-105'
+                ? 'text-blue-600 dark:text-blue-400 scale-105'
                 : 'text-gray-500 dark:text-gray-400 hover:text-gray-700'
             }`}
           >
@@ -793,8 +784,8 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
               keyUnlocked
                 ? 'bg-emerald-500 ring-4 ring-emerald-200 dark:ring-emerald-900 animate-bounce'
                 : isUnlockingKey
-                ? 'bg-amber-400 animate-pulse'
-                : 'bg-amber-500 hover:bg-amber-600 ring-4 ring-amber-100 dark:ring-amber-900/40'
+                ? 'bg-blue-400 animate-pulse'
+                : 'bg-blue-600 hover:bg-blue-700 ring-4 ring-blue-100 dark:ring-blue-900/40'
             }`}
             title="Tap to unlock room door"
           >
@@ -811,7 +802,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({ onExitToPublic
             onClick={() => setActiveTab('billing')}
             className={`flex flex-col items-center py-1 px-2.5 rounded-xl text-[10px] font-bold transition-all ${
               activeTab === 'billing'
-                ? 'text-amber-600 dark:text-amber-400 scale-105'
+                ? 'text-blue-600 dark:text-blue-400 scale-105'
                 : 'text-gray-500 dark:text-gray-400 hover:text-gray-700'
             }`}
           >

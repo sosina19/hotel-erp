@@ -89,12 +89,12 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [darkMode, setDarkMode] = useState(false);
   const [toasts, setToasts] = useState<Toast[]>([]);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [guestLoggedIn, setGuestLoggedIn] = useState(Boolean(initialParams.room));
-  const [guestEmail, setGuestEmail] = useState(initialParams.room ? `guest.room${initialParams.room}@betorahms.com` : '');
+  const [guestLoggedIn, setGuestLoggedIn] = useState(false);
+  const [guestEmail, setGuestEmail] = useState('');
 
   // Scanned room & target parameters
   const [scannedRoom, setScannedRoom] = useState<string | null>(initialParams.room);
-  const [scannedTarget, setScannedTarget] = useState<string | null>(initialParams.target);
+  const [scannedTarget, setScannedTarget] = useState<string | null>(initialParams.target || (initialParams.room ? 'dining' : null));
 
   const setCurrentView = useCallback((view: AppView) => {
     setCurrentViewState(prev => {
@@ -148,12 +148,10 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         setScannedRoom(room);
         setScannedTarget(target || 'dining');
         setCurrentViewState('public');
-        setGuestLoggedIn(true);
-        setGuestEmail(`guest.room${room}@betorahms.com`);
         addToast({
           type: 'success',
-          title: `Room #${room} QR Scan Connected`,
-          message: `Direct ${target === 'dining' ? 'In-Room Dining' : target === 'services' ? 'Hotel Services' : 'Guest Portal'} session activated for Room #${room}.`,
+          title: `Room #${room} QR Connected`,
+          message: `Welcome to Betora Grand Palace Hotel! In-Room & Restaurant Dining menu ready.`,
         });
       }
     }

@@ -141,7 +141,7 @@ export const RoomsPage: React.FC<RoomsPageProps> = ({ setCurrentPage }) => {
               <div className="flex gap-3">
                 <button
                   onClick={() => { setCurrentPage('book-now'); setSelected(null); }}
-                  className="flex-1 py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-bold transition-colors"
+                  className="flex-1 py-3 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-xl font-bold transition-colors shadow-sm"
                 >
                   Book Now — From ${selected.ratePerNight}/night
                 </button>

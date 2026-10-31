@@ -191,7 +191,7 @@ export const BookingEngine: React.FC<BookingEngineProps> = ({ setCurrentPage }) 
 
                 <button
                   onClick={handleStep1}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-bold text-lg transition-all hover:scale-[1.02] shadow-sm"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-xl font-bold text-lg transition-all hover:scale-[1.02] shadow-sm"
                 >
                   Search Available Rooms
                   <ChevronRight className="w-5 h-5" />
@@ -216,7 +216,7 @@ export const BookingEngine: React.FC<BookingEngineProps> = ({ setCurrentPage }) 
                   <div
                     key={room.id}
                     onClick={() => setSelectedRoom(room)}
-                    className={`card p-4 cursor-pointer transition-all duration-200 hover:shadow-luxury ${selectedRoom?.id === room.id ? 'ring-2 ring-amber-500 shadow-luxury' : ''}`}
+                    className={`card p-4 cursor-pointer transition-all duration-200 hover:shadow-luxury ${selectedRoom?.id === room.id ? 'ring-2 ring-[#1e3a5f] shadow-luxury' : ''}`}
                   >
                     <div className="flex gap-4">
                       <img src={room.image} alt={room.type} className="w-28 h-24 rounded-xl object-cover flex-shrink-0" />
@@ -242,14 +242,14 @@ export const BookingEngine: React.FC<BookingEngineProps> = ({ setCurrentPage }) 
                             <span className="flex items-center gap-1"><BedDouble className="w-3.5 h-3.5" />{room.bedType}</span>
                           </div>
                           {nights > 0 && (
-                            <p className="text-sm font-semibold text-amber-600 dark:text-amber-400">
+                            <p className="text-sm font-semibold text-[#1e3a5f] dark:text-blue-400">
                               Total: ${(room.ratePerNight * nights).toLocaleString()}
                             </p>
                           )}
                         </div>
                       </div>
                       <div className="flex-shrink-0 flex items-center">
-                        <div className={`w-5 h-5 rounded-full border-2 transition-all ${selectedRoom?.id === room.id ? 'border-amber-500 bg-amber-500' : 'border-gray-300 dark:border-gray-600'}`}>
+                        <div className={`w-5 h-5 rounded-full border-2 transition-all ${selectedRoom?.id === room.id ? 'border-[#1e3a5f] bg-[#1e3a5f]' : 'border-gray-300 dark:border-gray-600'}`}>
                           {selectedRoom?.id === room.id && <CheckCircle className="w-5 h-5 text-white" />}
                         </div>
                       </div>
@@ -259,7 +259,7 @@ export const BookingEngine: React.FC<BookingEngineProps> = ({ setCurrentPage }) 
 
                 <button
                   onClick={handleStep2}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-bold text-lg transition-all hover:scale-[1.02]"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-xl font-bold text-lg transition-all hover:scale-[1.02]"
                 >
                   Continue with {selectedRoom?.type || 'Selected Room'}
                   <ChevronRight className="w-5 h-5" />
@@ -344,7 +344,7 @@ export const BookingEngine: React.FC<BookingEngineProps> = ({ setCurrentPage }) 
 
                 <button
                   onClick={handleConfirm}
-                  className="w-full flex items-center justify-center gap-2 py-4 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-bold text-lg transition-all hover:scale-[1.02] shadow-md"
+                  className="w-full flex items-center justify-center gap-2 py-4 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-xl font-bold text-lg transition-all hover:scale-[1.02] shadow-md"
                 >
                   <Lock className="w-5 h-5" />
                   Confirm & Pay ${grandTotal.toFixed(2)}
@@ -387,7 +387,7 @@ export const BookingEngine: React.FC<BookingEngineProps> = ({ setCurrentPage }) 
 
               {/* Room */}
               {selectedRoom && (
-                <div className="mb-4 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-xl border border-amber-200 dark:border-amber-800">
+                <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
                   <img src={selectedRoom.image} alt="" className="w-full h-24 object-cover rounded-lg mb-2" />
                   <p className="font-bold text-gray-800 dark:text-gray-200 text-sm">{selectedRoom.type}</p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">Room {selectedRoom.number} · {selectedRoom.view}</p>
@@ -469,7 +469,7 @@ export const BookingEngine: React.FC<BookingEngineProps> = ({ setCurrentPage }) 
             <div className="space-y-2">
               <button
                 onClick={() => { setShowSuccess(false); setCurrentPage('guest-portal'); }}
-                className="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-bold transition-colors"
+                className="w-full py-3 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-xl font-bold transition-colors"
               >
                 View My Booking
               </button>

@@ -43,7 +43,7 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
           <div className="flex flex-col sm:flex-row gap-3">
             <button
               onClick={() => setCurrentPage('book-now')}
-              className="px-8 py-3.5 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-bold text-lg transition-all shadow-luxury hover:shadow-luxury-lg hover:scale-105"
+              className="px-8 py-3.5 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-xl font-bold text-lg transition-all shadow-luxury hover:shadow-luxury-lg hover:scale-105 border border-blue-400/30"
             >
               Reserve Now
             </button>
@@ -74,12 +74,12 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
       {/* Amenities */}
       <section className="py-16 px-4 max-w-7xl mx-auto">
         <div className="text-center mb-10">
-          <p className="text-amber-600 font-semibold text-sm uppercase tracking-widest mb-2">World-Class Facilities</p>
+          <p className="text-[#1e3a5f] dark:text-blue-400 font-semibold text-sm uppercase tracking-widest mb-2">World-Class Facilities</p>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white font-serif">Experience Unmatched Luxury</h2>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {hotelAmenities.map(amenity => (
-            <div key={amenity.title} className="group p-5 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-amber-300 dark:hover:border-amber-700 hover:shadow-luxury transition-all duration-300 text-center cursor-pointer">
+            <div key={amenity.title} className="group p-5 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-luxury transition-all duration-300 text-center cursor-pointer">
               <span className="text-3xl mb-3 block group-hover:scale-110 transition-transform duration-200">{amenity.icon}</span>
               <h3 className="font-semibold text-gray-900 dark:text-white mb-1">{amenity.title}</h3>
               <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{amenity.description}</p>
@@ -92,7 +92,7 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
       <section className="py-16 bg-gray-50 dark:bg-gray-800/50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-10">
-            <p className="text-amber-600 font-semibold text-sm uppercase tracking-widest mb-2">Accommodations</p>
+            <p className="text-[#1e3a5f] dark:text-blue-400 font-semibold text-sm uppercase tracking-widest mb-2">Accommodations</p>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white font-serif">Our Finest Rooms & Suites</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -104,7 +104,7 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
               <div key={room.title} className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-card hover:shadow-luxury transition-shadow group">
                 <div className="relative overflow-hidden">
                   <img src={room.image} alt={room.title} className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <span className="absolute top-3 left-3 px-3 py-1 bg-amber-500 text-white text-xs font-bold rounded-full">{room.tag}</span>
+                  <span className="absolute top-3 left-3 px-3 py-1 bg-[#1e3a5f] text-white text-xs font-bold rounded-full">{room.tag}</span>
                 </div>
                 <div className="p-5">
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white font-serif mb-2">{room.title}</h3>
@@ -140,7 +140,7 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
       {/* Reviews */}
       <section className="py-16 px-4 max-w-7xl mx-auto">
         <div className="text-center mb-10">
-          <p className="text-amber-600 font-semibold text-sm uppercase tracking-widest mb-2">Guest Reviews</p>
+          <p className="text-[#1e3a5f] dark:text-blue-400 font-semibold text-sm uppercase tracking-widest mb-2">Guest Reviews</p>
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white font-serif">What Our Guests Say</h2>
           <div className="flex items-center justify-center gap-2 mt-3">
             <div className="flex gap-0.5">
@@ -172,7 +172,7 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
           <p className="text-white/80 mb-8 text-lg">Book directly for the best rates and exclusive benefits</p>
           <button
             onClick={() => setCurrentPage('book-now')}
-            className="px-10 py-4 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-bold text-lg transition-all shadow-luxury hover:scale-105"
+            className="px-10 py-4 bg-white text-[#1e3a5f] hover:bg-blue-50 rounded-xl font-bold text-lg transition-all shadow-luxury hover:scale-105"
           >
             Check Availability
           </button>

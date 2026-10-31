@@ -75,8 +75,8 @@ export const GuestPortal: React.FC<GuestPortalProps> = ({ setCurrentPage }) => {
         <div className="w-full max-w-md">
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-luxury border border-gray-100 dark:border-gray-700 p-8 animate-slide-up">
             <div className="text-center mb-6">
-              <div className="w-14 h-14 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-amber-200 dark:border-amber-700">
-                <KeyRound className="w-7 h-7 text-amber-600 dark:text-amber-400" />
+              <div className="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-blue-200 dark:border-blue-700">
+                <KeyRound className="w-7 h-7 text-[#1e3a5f] dark:text-blue-400" />
               </div>
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Resident Sign In</h2>
               <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
@@ -85,23 +85,23 @@ export const GuestPortal: React.FC<GuestPortalProps> = ({ setCurrentPage }) => {
             </div>
 
             {/* Quick 1-Click Demo Login Banner */}
-            <div className="mb-6 p-3.5 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl">
+            <div className="mb-6 p-3.5 bg-blue-50/70 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-xl">
               <div className="flex items-center justify-between mb-1.5">
-                <div className="flex items-center gap-1.5 text-xs font-bold text-amber-800 dark:text-amber-300">
+                <div className="flex items-center gap-1.5 text-xs font-bold text-[#1e3a5f] dark:text-blue-300">
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>Instant Demo Account</span>
                 </div>
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-200 dark:bg-amber-800 text-amber-900 dark:text-amber-100 font-bold">
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-800 text-blue-900 dark:text-blue-100 font-bold">
                   Room 101
                 </span>
               </div>
-              <p className="text-xs text-amber-700 dark:text-amber-400 mb-2.5 leading-relaxed">
+              <p className="text-xs text-blue-800 dark:text-blue-300 mb-2.5 leading-relaxed">
                 Experience the complete 8-module portal as Lord James Worthington (Checked-In Resident).
               </p>
               <button
                 type="button"
                 onClick={handleDemoFill}
-                className="w-full py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-lg text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5"
+                className="w-full py-2 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-lg text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5"
               >
                 <span>⚡ 1-Click Resident Sign In</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -151,7 +151,7 @@ export const GuestPortal: React.FC<GuestPortalProps> = ({ setCurrentPage }) => {
 
               <button
                 type="submit"
-                className="w-full py-3 bg-gray-900 hover:bg-black dark:bg-amber-500 dark:hover:bg-amber-600 text-white rounded-xl font-bold text-sm transition-all hover:scale-[1.01] shadow-md"
+                className="w-full py-3 bg-[#1e3a5f] hover:bg-[#2b5182] text-white rounded-xl font-bold text-sm transition-all hover:scale-[1.01] shadow-md"
               >
                 Sign In to My Stay
               </button>
@@ -164,7 +164,7 @@ export const GuestPortal: React.FC<GuestPortalProps> = ({ setCurrentPage }) => {
               <button
                 type="button"
                 onClick={() => setCurrentPage('book-now')}
-                className="w-full py-2.5 border-2 border-gray-200 dark:border-gray-700 hover:border-amber-400 text-gray-700 dark:text-gray-300 rounded-xl font-semibold text-xs hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                className="w-full py-2.5 border-2 border-gray-200 dark:border-gray-700 hover:border-blue-500 text-gray-700 dark:text-gray-300 rounded-xl font-semibold text-xs hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
               >
                 Browse & Book Rooms Online
               </button>
